@@ -1,0 +1,33 @@
+<section class="dark:bg-gray-900 h-full">
+  <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto h-full">
+    <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+      <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+        <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+            Create a new account
+        </h1>
+        <form class="space-y-4 md:space-y-6" [formGroup]="signupForm" (ngSubmit)="handleSignup()">
+          <div>
+            <label for="firstName" class="input-label">first name</label>
+            <input type="text" formControlName="firstName" id="firstName" class="input-text" placeholder="Mario" required="">
+            <label for="lastName" class="input-label">last name</label>
+            <input type="text" formControlName="lastName" id="lastName" class="input-text" placeholder="Rossi" required="">
+            <label for="user" class="input-label">username</label>
+            <input type="text" formControlName="user" id="user" class="input-text" placeholder="Your username" required="">
+            
+          </div>
+          <div>
+            <label for="password" class="input-label">Password</label>
+            <input type="password" formControlName="password" id="password" placeholder="••••••••" class="input-text" required="">
+      
+            <label for="confirmPassword" class="input-label">confirm password</label>
+            <input type="password" formControlName="confirmPassword" id="confirmPassword" placeholder="••••••••" class="input-text" required="">
+          </div>
+          <button type="submit" class="primary-btn">Sign in</button>
+          <p class="text-sm font-medium text-gray-500 dark:text-gray-400">
+            Already have an account? <a routerLink="/login" class="link">Login</a>
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
