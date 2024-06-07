@@ -1,0 +1,26 @@
+@import "../../assets/styles/variables";
+
+.login-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .login-content {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+
+
+.mat-accent.mat-mdc-form-field {
+  --mdc-filled-text-field-caret-color: #F4B828 !important;
+  --mdc-filled-text-field-focus-active-indicator-color: #F4B828 !important;
+  --mdc-filled-text-field-focus-label-text-color: #F4B828 !important;
+  --mdc-outlined-text-field-caret-color: #F4B828 !important;
+  --mdc-outlined-text-field-focus-outline-color: #F4B828 !important;
+  --mdc-outlined-text-field-focus-label-text-color: #F4B828 !important;
+  --mat-form-field-focus-select-arrow-color: #F4B828 !important;
+}
