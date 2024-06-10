@@ -1,0 +1,12 @@
+@import '../../assets/styles/variables';
+
+.footer {
+  background-color: $text-color;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+
+  p {
+    color: $background-color;
+  }
+}

@@ -1,8 +1,20 @@
 @import '../../assets/styles/variables';
 
-.progress-container {
-  position: fixed;
-  top: 0px; /* Adjust to desired height */
-  width: 100%;
+* {
+  background-color: $background-color;
 }
 
+.navigation {
+  display: flex;
+  padding: .5em;
+  top: 0;
+  justify-content: space-between;
+}
+
+
+
+.progress-container {
+  position: fixed;
+  /* Adjust to desired height */
+  width: 100%;
+}

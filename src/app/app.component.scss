@@ -1,9 +1,8 @@
 @import '../assets/styles/variables';
 
-// main {
-//  background-color: $background-color;
-//   height: 100svh;
-//   top: 0;
-//   margin: 0;
-//   padding: 0;
-// }
+* {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  justify-items: center;
+}

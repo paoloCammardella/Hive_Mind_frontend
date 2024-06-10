@@ -1,4 +1,44 @@
-<div class="progress-container">
+<div class="navigation">
   <p>navbar works!</p>
-  <mat-progress-bar [value]="bufferValue" [color]="color" [mode]="mode"></mat-progress-bar>
+
+  <button
+    mat-icon-button
+    fontIcon="home"
+    [matMenuTriggerFor]="menu"
+    aria-label="Example thumbs up SVG icon"
+  >
+    <mat-icon>person</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu" backdropClass="menu">
+    <button mat-menu-item>
+      <mat-icon>dialpad</mat-icon>
+      <span>Redial</span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon>password</mat-icon>
+      <span>Change password</span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon>logout</mat-icon>
+      <span>Log out</span>
+    </button>
+  </mat-menu>
 </div>
+
+<div class="progress-container">
+  <mat-progress-bar
+    [value]="bufferValue"
+    [color]="color"
+    [mode]="mode"
+  ></mat-progress-bar>
+</div>
+
+<mat-tab-group
+  mat-stretch-tabs="false"
+  mat-align-tabs="center"
+  animationDuration="1000ms"
+>
+  <mat-tab label="Popular">Content</mat-tab>
+  <mat-tab label="Controversial">Content 2</mat-tab>
+  <mat-tab label="Unpopular">Content 3</mat-tab>
+</mat-tab-group>
