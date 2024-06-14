@@ -4,9 +4,44 @@
   background-color: $text-color;
   bottom: 0;
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  justify-items: center;
+  padding: .5em;
 
-  p {
+  h3 {
     color: $background-color;
+    font-weight: bold;
+    font-size: 1.5em;
+    margin: auto;
+  }
+
+  .footer-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+
+    .left-group {
+      background-color: aliceblue;
+      height: 10px;
+      width: 100px;
+      margin: 5px;
+    }
+
+    .center-group {
+      background-color: lightcoral;
+      height: 10px;
+      width: 100px;
+      margin: 5px;
+
+    }
+
+    .right-group {
+      background-color: papayawhip;
+      height: 10px;
+      width: 100px;
+      margin: 5px;
+
+    }
   }
 }
