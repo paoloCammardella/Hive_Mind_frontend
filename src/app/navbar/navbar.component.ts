@@ -5,12 +5,12 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatButtonModule} from '@angular/material/button';
 import {MatTabsModule} from '@angular/material/tabs';
-import { RouterOutlet } from '@angular/router';
+import { RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [MatProgressBar, MatButtonModule, MatMenuModule, MatIconModule, MatTabsModule, RouterOutlet],
+  imports: [MatProgressBar, MatButtonModule, MatMenuModule, MatIconModule, MatTabsModule, RouterOutlet, RouterLink],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss'
 })

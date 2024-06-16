@@ -1,41 +1,72 @@
 @use '@angular/material' as mat;
-
+@import "./assets/styles/variables";
 @include mat.core();
 
-// // Define your custom palette colors
-// $custom-primary-palette: mat.m2-define-palette((
-//   50: #f3f8fc,
-//   100: #c4e3f6,
-//   200: #8ed3ef,
-//   300: #5ec3e7,
-//   400: #39b8e2,
-//   500: #14ade0,
-//   600: #12a6da,
-//   700: #109ad0,
-//   800: #0f8ec6,
-//   900: #0d7bb3,
-//   A100: #c4e3f6,
-//   A200: #8ed3ef,
-//   A400: #39b8e2,
-//   A700: #109ad0,
-// ));
+$custom-accent-palette: (
+  50: #fff7e0,
+  100: #ffe4b3,
+  200: #ffcf80,
+  300: #ffba4d,
+  400: #ffa929,
+  500: #f4b828,  // Colore principale
+  600: #f0a424,
+  700: #e58e20,
+  800: #db7a1c,
+  900: #cc5b14,
+  A100: #ffe4b3,
+  A200: #ffcf80,
+  A400: #ffa929,
+  A700: #e58e20,
+  contrast: (
+    50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: rgba(black, 0.87),
+    400: rgba(black, 0.87),
+    500: rgba(black, 0.87),
+    600: rgba(black, 0.87),
+    700: white,
+    800: white,
+    900: white,
+    A100: rgba(black, 0.87),
+    A200: rgba(black, 0.87),
+    A400: rgba(black, 0.87),
+    A700: white,
+  )
+);
 
-// $custom-accent-palette: mat.m2-define-palette((
-//   50: #f3f8fc,
-//   100: #c4e3f6,
-//   200: #8ed3ef,
-//   300: #5ec3e7,
-//   400: #39b8e2,
-//   500: #14ade0,
-//   600: #12a6da,
-//   700: #109ad0,
-//   800: #0f8ec6,
-//   900: #0d7bb3,
-//   A100: #c4e3f6,
-//   A200: #8ed3ef,
-//   A400: #39b8e2,
-//   A700: #109ad0,
-// ));
+$custom-secondary-palette: (
+  50: #fffaf2,
+  100: #fff1e0,
+  200: #ffe7cc,
+  300: #ffddb8,
+  400: #ffd5a8,
+  500: #fcebc5,  // Colore principale
+  600: #f8d59c,
+  700: #f4c073,
+  800: #efac4b,
+  900: #e77a00,
+  A100: #fff1e0,
+  A200: #ffe7cc,
+  A400: #ffd5a8,
+  A700: #f4c073,
+  contrast: (
+    50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: rgba(black, 0.87),
+    400: rgba(black, 0.87),
+    500: rgba(black, 0.87),
+    600: rgba(black, 0.87),
+    700: rgba(black, 0.87),
+    800: rgba(black, 0.87),
+    900: rgba(black, 0.87),
+    A100: rgba(black, 0.87),
+    A200: rgba(black, 0.87),
+    A400: rgba(black, 0.87),
+    A700: rgba(black, 0.87),
+  )
+);
 
 
 $custom-primary-palette: (
@@ -73,17 +104,19 @@ $custom-primary-palette: (
 
 
 $myapp-theme-primary: mat.m2-define-palette($custom-primary-palette, A400, A100, A700);
-$myapp-theme-accent: mat.m2-define-palette($custom-primary-palette);
+$myapp-theme-secondary: mat.m2-define-palette($custom-secondary-palette);
+$myapp-theme-accent: mat.m2-define-palette($custom-accent-palette);
 $myapp-theme-warn: mat.m2-define-palette(mat.$m2-red-palette);
 
 $myapp-theme: mat.m2-define-light-theme((
   color: (
     primary: $myapp-theme-primary,
+    secondary: $myapp-theme-secondary,
     accent: $myapp-theme-accent,
     warn: $myapp-theme-warn,
   )
 ));
 
 @include mat.all-component-themes($myapp-theme);
-html, body { height: 100%; }
+html, body { height: 100%; color: $text-color;}
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

@@ -1,10 +1,7 @@
 @import '../../assets/styles/variables';
 
-* {
-  background-color: $background-color;
-}
-
 .navigation {
+  background-color: $background-color;
   display: flex;
   padding: .5em;
   top: 0;

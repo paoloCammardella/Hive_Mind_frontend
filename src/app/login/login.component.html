@@ -1,15 +1,30 @@
-<div class="login-container">
-  <div class="login-content">
-    <mat-form-field appearance="outline" class="input" >
-      <mat-label>Username</mat-label>
-      <input matInput/>
-    </mat-form-field>
+<h1>Hive Mind</h1>
+<div class="nav-info"></div>
+<div class="center">
+  <div class="login-container">
+    <img src="../../assets/image/logo.png">
+    <p>Share your ideas to the world</p>
+    <div class="login-content">
+      <mat-form-field appearance="outline" class="input">
+        <mat-label>Username</mat-label>
+        <input matInput />
+      </mat-form-field>
 
-    <mat-form-field appearance="outline" color="accent">
-      <mat-label>Password</mat-label>
-      <input matInput type="password" />
-    </mat-form-field>
-    <p class="forgot-password">Forgot password?</p>
-    <p>Don't have an account? <a routerLink="/signup"> Sign up!</a></p>
+      <mat-form-field appearance="outline" class="input">
+        <mat-label>Password</mat-label>
+        <input matInput type="password" />
+      </mat-form-field>
+
+      <div class="clickable">
+        <div class="forgot-div">
+        <p class="forgot-password">Forgot password?</p>
+        </div>
+        <button mat-raised-button class="custom-button" onclick="handleLogin()">Signin</button>
+        <mat-divider class="divider"></mat-divider>
+        <span class="signup">
+          <p>Don't have an account? </p> <a routerLink="/signup"> Sign up!</a>
+        </span>
+      </div>
+    </div>
   </div>
 </div>

@@ -4,7 +4,6 @@ import { EditorModule } from 'primeng/editor';
 import { SignupComponent } from './signup/signup.component';
 import { FooterComponent } from './footer/footer.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { ToastrModule } from 'ngx-toastr';
 
 
 @Component({

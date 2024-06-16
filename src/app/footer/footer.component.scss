@@ -1,47 +1,71 @@
+@use 'sass:color';
 @import '../../assets/styles/variables';
 
 .footer {
-  background-color: $text-color;
+  position: absolute;
   bottom: 0;
+  background-color: $text-color;
   display: flex;
   flex-direction: column;
   justify-content: center;
   justify-items: center;
-  padding: .5em;
+
+  @mixin text_design($color: text-color) {
+    color: $color;
+    font-weight: bold;
+    margin: auto;
+    text-align: center;
+  }
+
+  h4 {
+    @include text_design($accent-color);
+  }
 
   h3 {
-    color: $background-color;
-    font-weight: bold;
-    font-size: 1.5em;
-    margin: auto;
+    @include text_design()
+  }
+
+  .info {
+    display: flex;
+    justify-content: space-between;
+    background-color: $accent-color;
+    bottom: 0;
+
+    h5 {
+      @include text_design();
+      margin: 0 10px;
+    }
   }
 
   .footer-content {
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: 2fr 3fr 3fr;
     justify-content: space-evenly;
 
-    .left-group {
-      background-color: aliceblue;
-      height: 10px;
-      width: 100px;
-      margin: 5px;
+    .summary {
+      border-radius: 10px;
+      color: $text-color;
+      background-color: $background-color;
+      margin: 10px;
+      padding: 10px;
     }
 
-    .center-group {
-      background-color: lightcoral;
-      height: 10px;
-      width: 100px;
-      margin: 5px;
-
+    .service {
+      justify-content: end;
+      margin: 10px;
+      padding: 10px;
     }
 
-    .right-group {
-      background-color: papayawhip;
-      height: 10px;
-      width: 100px;
-      margin: 5px;
-
+    .contact {
+      margin: 10px;
+      padding: 10px;
     }
   }
+}
+
+.info-list {
+  position: relative;
+  margin-left: 5px;
+  list-style-type: none;
+  color: $background-color;
 }
