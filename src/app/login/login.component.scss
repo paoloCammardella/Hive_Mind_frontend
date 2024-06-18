@@ -1,5 +1,16 @@
+@use '../../assets/styles/buttons.scss';
+@use '../../assets/styles/divider.scss';
+@use '../../assets/styles/form.scss';
+
 @import "../../assets/styles/variables";
 
+
+.nav-info{
+  display: flex;
+  flex-direction: column;
+  margin: 0 10px;
+  color: $text-color;
+}
 
 .center {
   height: 100svh;
@@ -17,86 +28,11 @@
   border-radius: 10px;
   align-items: center;
   justify-content: center;
-
-  .login-content {
-    width: 80%;
-    display: flex;
-    flex-direction: column;
-
-    .input {
-      height: fit-content;
-    }
-
-    a,
-    .forgot-password {
-      position: relative;
-      color: $accent-color; // Colore del testo del link
-      text-decoration: none; // Rimuove la sottolineatura predefinita
-      padding-bottom: 2px; // Aggiunge spazio per il bordo inferiore
-      transition: color 0.4s ease;
-
-      &:hover {
-        color: darken($color: $accent-color, $amount: 1%); // Colore del testo per lo stato hover
-      }
-
-      &::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 2px; // Altezza del bordo inferiore
-        background-color: $accent-color; // Colore del bordo inferiore
-        transform: scaleX(0);
-        transform-origin: left;
-        transition: transform 0.4s ease;
-      }
-
-      &:hover::after {
-        transform: scaleX(1);
-      }
-    }
-  }
-}
-
-.custom-button {
-  position: relative;
-  overflow: hidden;
-  background-color: #fcebc5;
-  color: $text-color;
-  z-index: 1;
-  transition: color 0.4s ease;
-
-  &:hover {
-    color: $text-color; // Colore del testo per lo stato hover
-  }
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: $accent-color; // Colore di sfondo per lo stato hover
-    z-index: -1;
-    transition: transform 0.4s ease;
-  }
-
-  &:hover::before {
-    transform: scaleX(1);
-  }
 }
 
 .clickable {
   display: flex;
   flex-direction: column;
-
-  .signup {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
 
   .forgot-div {
     margin: 0;
@@ -111,8 +47,10 @@
   }
 }
 
-.divider {
-  margin-top: 10px;
-  bottom: 0;
-  height: 1px;
+.change-page {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
 }

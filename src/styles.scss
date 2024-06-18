@@ -102,9 +102,43 @@ $custom-primary-palette: (
   )
 );
 
+$custom-text-palette: (
+  50: #e3e0dc,
+  100: #bab3aa,
+  200: #8c8174,
+  300: #5e503e,
+  400: #3b2e1e,
+  500: #1B1404, // Colore principale
+  600: #181204,
+  700: #140f03,
+  800: #100c03,
+  900: #0a0802,
+  A100: #f3d6c1,
+  A200: #e3a47e,
+  A400: #d3713b,
+  A700: #c05e22,
+  contrast: (
+    50: rgba(0, 0, 0, 0.87),
+    100: rgba(0, 0, 0, 0.87),
+    200: rgba(255, 255, 255, 1),
+    300: rgba(255, 255, 255, 1),
+    400: rgba(255, 255, 255, 1),
+    500: rgba(255, 255, 255, 1),
+    600: rgba(255, 255, 255, 1),
+    700: rgba(255, 255, 255, 1),
+    800: rgba(255, 255, 255, 1),
+    900: rgba(255, 255, 255, 1),
+    A100: rgba(0, 0, 0, 0.87),
+    A200: rgba(255, 255, 255, 1),
+    A400: rgba(255, 255, 255, 1),
+    A700: rgba(255, 255, 255, 1),
+  )
+);
+
 
 $myapp-theme-primary: mat.m2-define-palette($custom-primary-palette, A400, A100, A700);
 $myapp-theme-secondary: mat.m2-define-palette($custom-secondary-palette);
+$myapp-theme-text: mat.m2-define-palette($custom-text-palette);
 $myapp-theme-accent: mat.m2-define-palette($custom-accent-palette);
 $myapp-theme-warn: mat.m2-define-palette(mat.$m2-red-palette);
 
@@ -112,11 +146,12 @@ $myapp-theme: mat.m2-define-light-theme((
   color: (
     primary: $myapp-theme-primary,
     secondary: $myapp-theme-secondary,
+    text: $myapp-theme-text,
     accent: $myapp-theme-accent,
     warn: $myapp-theme-warn,
   )
 ));
 
 @include mat.all-component-themes($myapp-theme);
-html, body { height: 100%; color: $text-color;}
+html, body { height: 100vh; color: $text-color;}
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

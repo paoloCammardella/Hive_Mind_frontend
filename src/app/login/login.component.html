@@ -1,10 +1,15 @@
-<h1>Hive Mind</h1>
-<div class="nav-info"></div>
+<div class="nav-info">
+  <h1>Hive Mind</h1>
+</div>
 <div class="center">
   <div class="login-container">
-    <img src="../../assets/image/logo.png">
+    <img src="../../assets/image/logo.png" />
     <p>Share your ideas to the world</p>
-    <div class="login-content">
+    <form
+      [formGroup]="loginForm"
+      class="form-content"
+      (ngSubmit)="handleLogin()"
+    >
       <mat-form-field appearance="outline" class="input">
         <mat-label>Username</mat-label>
         <input matInput />
@@ -13,18 +18,32 @@
       <mat-form-field appearance="outline" class="input">
         <mat-label>Password</mat-label>
         <input matInput type="password" />
+        <!-- TODO: perché mi va alla home quando clicco nascondi password -->
+        <button
+        mat-icon-button
+        matSuffix
+        (click)="clickEvent()"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide()"
+      >
+        <mat-icon color="#fff">{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
       </mat-form-field>
 
       <div class="clickable">
         <div class="forgot-div">
-        <p class="forgot-password">Forgot password?</p>
+          <a class="forgot-password" routerLink="/forgotpassword">Forgot password?</a>
         </div>
-        <button mat-raised-button class="custom-button" onclick="handleLogin()">Signin</button>
-        <mat-divider class="divider"></mat-divider>
-        <span class="signup">
-          <p>Don't have an account? </p> <a routerLink="/signup"> Sign up!</a>
-        </span>
+        <button mat-raised-button class="custom-button" type="submit">
+          Signin
+        </button>
       </div>
-    </div>
+    </form>
+
+    <mat-divider class="divider"></mat-divider>
+    <span class="change-page">
+      <p>Don't have an account?</p>
+      <a routerLink="/signup"> Sign up!</a>
+    </span>
   </div>
 </div>

@@ -1,6 +1,14 @@
 @use 'sass:color';
 @import '../../assets/styles/variables';
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  height: fit-content;
+  max-height: 20svh;
+}
+
 .footer {
   position: absolute;
   bottom: 0;
@@ -8,7 +16,6 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  justify-items: center;
 
   @mixin text_design($color: text-color) {
     color: $color;
@@ -29,36 +36,57 @@
     display: flex;
     justify-content: space-between;
     background-color: $accent-color;
-    bottom: 0;
-
+    margin-top: auto;
+    position: absolute;
+    width: 100%;
+    bottom: 0 ;
     h5 {
       @include text_design();
       margin: 0 10px;
     }
   }
 
+
+
   .footer-content {
-    display: grid;
-    grid-template-columns: 2fr 3fr 3fr;
+    display: flex;
+    width: 100svw;
     justify-content: space-evenly;
+
+    li a {
+      text-decoration: none;
+      color: $background-color;
+      margin: 5px 0;
+      display: block;
+    }
+
+    li a:hover {
+      text-decoration: none;
+      padding-left: 10px;
+      color: darken($background-color, 20%);
+      display: block;
+      transition-duration: .4s;
+    }
 
     .summary {
       border-radius: 10px;
       color: $text-color;
       background-color: $background-color;
+      max-width: 400px;
+      min-width: 300px;
       margin: 10px;
       padding: 10px;
     }
 
+    .contact,
     .service {
-      justify-content: end;
       margin: 10px;
       padding: 10px;
-    }
+      align-self: flex-start;
 
-    .contact {
-      margin: 10px;
-      padding: 10px;
+      ul {
+        max-width: fit-content;
+      }
     }
   }
 }
@@ -68,4 +96,13 @@
   margin-left: 5px;
   list-style-type: none;
   color: $background-color;
+}
+
+// TODO: Crea il footer responsive, guarda il tutorial
+@media (max-width: 768px) {
+  .footer-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
 }
