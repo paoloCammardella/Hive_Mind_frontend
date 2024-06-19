@@ -20,27 +20,27 @@
         <input matInput type="password" />
         <!-- TODO: perché mi va alla home quando clicco nascondi password -->
         <button
-        mat-icon-button
-        matSuffix
-        (click)="clickEvent()"
-        [attr.aria-label]="'Hide password'"
-        [attr.aria-pressed]="hide()"
-      >
-        <mat-icon color="#fff">{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
-      </button>
+          mat-icon-button
+          matSuffix
+          (click)="clickEvent()"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide()"
+        >
+          <mat-icon color="#fff">{{
+            hide() ? "visibility_off" : "visibility"
+          }}</mat-icon>
+        </button>
       </mat-form-field>
 
       <div class="clickable">
-        <div class="forgot-div">
-          <a class="forgot-password" routerLink="/forgotpassword">Forgot password?</a>
-        </div>
         <button mat-raised-button class="custom-button" type="submit">
           Signin
         </button>
       </div>
+
+    <mat-divider class="divider"> Or </mat-divider>
     </form>
 
-    <mat-divider class="divider"></mat-divider>
     <span class="change-page">
       <p>Don't have an account?</p>
       <a routerLink="/signup"> Sign up!</a>
