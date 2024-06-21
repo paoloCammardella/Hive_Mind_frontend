@@ -8,7 +8,8 @@ $custom-accent-palette: (
   200: #ffcf80,
   300: #ffba4d,
   400: #ffa929,
-  500: #f4b828,  // Colore principale
+  500: #f4b828,
+  // Colore principale
   600: #f0a424,
   700: #e58e20,
   800: #db7a1c,
@@ -17,8 +18,7 @@ $custom-accent-palette: (
   A200: #ffcf80,
   A400: #ffa929,
   A700: #e58e20,
-  contrast: (
-    50: rgba(black, 0.87),
+  contrast: (50: rgba(black, 0.87),
     100: rgba(black, 0.87),
     200: rgba(black, 0.87),
     300: rgba(black, 0.87),
@@ -41,7 +41,8 @@ $custom-secondary-palette: (
   200: #ffe7cc,
   300: #ffddb8,
   400: #ffd5a8,
-  500: #fcebc5,  // Colore principale
+  500: #fcebc5,
+  // Colore principale
   600: #f8d59c,
   700: #f4c073,
   800: #efac4b,
@@ -50,8 +51,7 @@ $custom-secondary-palette: (
   A200: #ffe7cc,
   A400: #ffd5a8,
   A700: #f4c073,
-  contrast: (
-    50: rgba(black, 0.87),
+  contrast: (50: rgba(black, 0.87),
     100: rgba(black, 0.87),
     200: rgba(black, 0.87),
     300: rgba(black, 0.87),
@@ -75,7 +75,8 @@ $custom-primary-palette: (
   200: #ffcf80,
   300: #ffba4d,
   400: #ffa929,
-  500: #f8b828,  // Colore principale
+  500: #f8b828,
+  // Colore principale
   600: #f0a424,
   700: #e58e20,
   800: #db7a1c,
@@ -84,8 +85,7 @@ $custom-primary-palette: (
   A200: #ffcf80,
   A400: #ffa929,
   A700: #e58e20,
-  contrast: (
-    50: rgba(black, 0.87),
+  contrast: (50: rgba(black, 0.87),
     100: rgba(black, 0.87),
     200: rgba(black, 0.87),
     300: rgba(black, 0.87),
@@ -108,7 +108,8 @@ $custom-text-palette: (
   200: #8c8174,
   300: #5e503e,
   400: #3b2e1e,
-  500: #1B1404, // Colore principale
+  500: #1B1404,
+  // Colore principale
   600: #181204,
   700: #140f03,
   800: #100c03,
@@ -117,8 +118,7 @@ $custom-text-palette: (
   A200: #e3a47e,
   A400: #d3713b,
   A700: #c05e22,
-  contrast: (
-    50: rgba(0, 0, 0, 0.87),
+  contrast: (50: rgba(0, 0, 0, 0.87),
     100: rgba(0, 0, 0, 0.87),
     200: rgba(255, 255, 255, 1),
     300: rgba(255, 255, 255, 1),
@@ -142,16 +142,30 @@ $myapp-theme-text: mat.m2-define-palette($custom-text-palette);
 $myapp-theme-accent: mat.m2-define-palette($custom-accent-palette);
 $myapp-theme-warn: mat.m2-define-palette(mat.$m2-red-palette);
 
-$myapp-theme: mat.m2-define-light-theme((
-  color: (
-    primary: $myapp-theme-primary,
-    secondary: $myapp-theme-secondary,
-    text: $myapp-theme-text,
-    accent: $myapp-theme-accent,
-    warn: $myapp-theme-warn,
-  )
-));
+$myapp-theme: mat.m2-define-light-theme((color: (primary: $myapp-theme-primary,
+        secondary: $myapp-theme-secondary,
+        text: $myapp-theme-text,
+        accent: $myapp-theme-accent,
+        warn: $myapp-theme-warn,
+      )));
 
 @include mat.all-component-themes($myapp-theme);
-html, body { height: 100vh; color: $text-color;}
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+@font-face {
+  font-family: futura;
+  src: url(assets/font/futura_sv/Futura\ Book.ttf) format("trutype");
+}
+@font-face {
+  font-family: bebas;
+  src: url(assets/font/bebas_neue/BebasNeue-Regular.ttf) format("truetype");
+}
+
+html,
+body {
+  height: 100vh;
+  color: $text-color;
+  // color-scheme: light dark;
+  }
+
+body {
+  margin: 0;
+}
