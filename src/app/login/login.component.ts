@@ -31,12 +31,12 @@ export class LoginComponent {
   userService = inject(UserService);
   authService = inject(AuthService);
 
-  submitted = false; //COntrolla se  l'utente ha provato a fare il login o meno
+  submitted = false; // l'utente ha gia provato a fare un accesso?
   loginForm = new FormGroup({
     user: new FormControl('', [Validators.required]),
     pass: new FormControl('', [
       Validators.required,
-      Validators.minLength(4), //Validator per la lunghezza minima della password
+      Validators.minLength(4),
       Validators.maxLength(16)])
   })
 
@@ -64,6 +64,7 @@ export class LoginComponent {
     //   })
     // }
   }
+
   navigateSignUp() {
     this.router.navigateByUrl("/signup");
   }
