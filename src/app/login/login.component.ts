@@ -18,14 +18,13 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
-
-  hide = signal(false);
-  clickEvent() {
-    this.hide.set(false);
-    // event.stopPropagation();
+  hide = signal(true);
+  clickEvent(event: MouseEvent) {
+    this.hide.set(!this.hide());
+    event.stopPropagation();
   }
 
-  toastr = inject(ToastrService); 
+  toastr = inject(ToastrService);
   router = inject(Router);
 
   userService = inject(UserService);
