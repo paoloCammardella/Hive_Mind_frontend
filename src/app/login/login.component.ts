@@ -25,7 +25,7 @@ export class LoginComponent {
     event.stopPropagation();
   }
 
-  toastr = inject(ToastrService); 
+  toastr = inject(ToastrService);
   router = inject(Router);
 
   userService = inject(UserService);
