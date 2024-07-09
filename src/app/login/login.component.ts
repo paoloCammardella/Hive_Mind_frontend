@@ -20,9 +20,9 @@ import { MatIconModule } from '@angular/material/icon';
 export class LoginComponent {
 
   hide = signal(false);
-  clickEvent() {
-    this.hide.set(false);
-    // event.stopPropagation();
+  clickEvent(event: Event) {
+    this.hide.set(!this.hide());
+    event.stopPropagation();
   }
 
   toastr = inject(ToastrService); 

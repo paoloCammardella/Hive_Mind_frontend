@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -7,15 +7,35 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { last } from 'rxjs';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-signup',
   standalone: true,
-  imports: [RouterLink, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatDividerModule],
+  imports: [RouterLink, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatDividerModule, MatIconModule],
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.scss'] // Nota la correzione di 'styleUrl' a 'styleUrls'
 })
 export class SignupComponent {
+
+
+  constructor(private _snackBar: MatSnackBar) { }
+
+  hidePassword = signal(false);
+  hideConfirmPassword = signal(false);
+
+  togglePasswordVisibility(event:Event){
+    this.hidePassword.set(!this.hidePassword());
+    event.stopPropagation();
+  }
+
+  toggleConfirmPasswordVisibility(event:Event){
+    this.hideConfirmPassword.set(!this.hideConfirmPassword());
+    event.stopPropagation();
+  }
+
   toastr = inject(ToastrService);
   router = inject(Router);
   userService = inject(UserService);
@@ -24,7 +44,8 @@ export class SignupComponent {
   signupForm = new FormGroup({
     firstName: new FormControl('', [Validators.required]),
     lastName: new FormControl('', [Validators.required]),
-    user: new FormControl('', [Validators.required]),
+    username: new FormControl('', [Validators.required]),
+    email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [
       Validators.required,
       Validators.minLength(4),
@@ -35,24 +56,39 @@ export class SignupComponent {
       Validators.maxLength(16)])
   });
 
+  checkPassword(password: string, confirmPassword: string): boolean {
+    if (password !== confirmPassword) {
+      this._snackBar.open("Passowrds doesn't match", "Ok!");
+      return false;
+    }
+    return true;
+  }
+
   handleSignup() {
-    console.log("Signup");
     this.submitted = true;
     if (this.signupForm.invalid) {
-      this.toastr.error("The data you provided is invalid!", "Oops! Invalid data!");
+      this._snackBar.open("Some fields are empty", "Ok!")
     } else {
-      this.userService.signup({
-        usr: this.signupForm.value.user as string,
-        pwd: this.signupForm.value.password as string,
-      }).subscribe({
-        error: (err) => {
-          this.toastr.error("The username you selected was already taken", "Oops! Could not create a new user");
-        },
-        complete: () => {
-          this.toastr.success(`You can now login with your new account`, `Congrats ${this.signupForm.value.user}!`);
-          this.router.navigateByUrl("/login");
-        }
-      });
+      if (this.checkPassword(this.signupForm.value.email as string,
+        this.signupForm.value.confirmPassword as string)) {
+        this.userService.signup({
+          username: this.signupForm.value.username as string,
+          firstname: this.signupForm.value.firstName as string,
+          lastname: this.signupForm.value.lastName as string,
+          email: this.signupForm.value.email as string,
+          password: this.signupForm.value.password as string,
+        }).subscribe({
+          error: (err) => {
+            this.toastr.error("The username you selected was already taken", "Oops! Could not create a new user");
+          },
+          complete: () => {
+            this.toastr.success(`You can now login with your new account`, `Congrats ${this.signupForm.value.username}!`);
+            this.router.navigateByUrl("/login");
+          }
+        });
+        this.toastr.success(`You can now login with your new account`, `Congrats ${this.signupForm.value.username}!`);
+
+      }
     }
   }
 }

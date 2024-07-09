@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AuthRequest } from './auth-request.type';
+import { User } from './user.type';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class UserService {
     })
   };
 
-  signup(signupRequest: AuthRequest){
+  signup(signupRequest: User){
     const url = `${this.url}/signup`; 
     console.log(signupRequest);
     return this.http.post(url, signupRequest, this.httpOptions);
