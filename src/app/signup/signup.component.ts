@@ -1,5 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormControl, FormGroup, FormGroupDirective, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from '../_services/user/user.service';
@@ -10,6 +10,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { last } from 'rxjs';
 import { MatIconModule } from '@angular/material/icon';
+import { ErrorStateMatcher } from '@angular/material/core';
 
 @Component({
   selector: 'app-signup',
@@ -18,6 +19,14 @@ import { MatIconModule } from '@angular/material/icon';
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.scss'] // Nota la correzione di 'styleUrl' a 'styleUrls'
 })
+
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    const isSubmitted = form && form.submitted;
+    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+  }
+}
+
 export class SignupComponent {
 
 
@@ -40,6 +49,8 @@ export class SignupComponent {
   router = inject(Router);
   userService = inject(UserService);
   submitted = false;
+
+  matcher = new MyErrorStateMatcher();
 
   signupForm = new FormGroup({
     firstName: new FormControl('', [Validators.required]),
