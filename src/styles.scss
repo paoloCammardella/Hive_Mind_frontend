@@ -1,5 +1,6 @@
 @use '@angular/material' as mat;
 @import "./assets/styles/variables";
+@import "./assets/styles/snackBar.scss"; // Importazione corretta
 @include mat.core();
 
 $custom-accent-palette: (
@@ -169,4 +170,9 @@ body {
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
+}
+
+::selection {
+  background: $background-color; /* Colore di sfondo dell'evidenziazione */
+  color: $text-color;     /* Colore del testo evidenziato */
 }

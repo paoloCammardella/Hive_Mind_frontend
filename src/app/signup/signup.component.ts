@@ -8,7 +8,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { last } from 'rxjs';
 import { MatIconModule } from '@angular/material/icon';
 import { ErrorStateMatcher } from '@angular/material/core';
 
@@ -17,30 +16,22 @@ import { ErrorStateMatcher } from '@angular/material/core';
   standalone: true,
   imports: [RouterLink, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatDividerModule, MatIconModule],
   templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.scss'] // Nota la correzione di 'styleUrl' a 'styleUrls'
+  styleUrls: ['./signup.component.scss']
 })
 
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
-  }
-}
-
 export class SignupComponent {
-
-
+  // Il resto del codice del componente rimane invariato
   constructor(private _snackBar: MatSnackBar) { }
 
   hidePassword = signal(false);
   hideConfirmPassword = signal(false);
 
-  togglePasswordVisibility(event:Event){
+  togglePasswordVisibility(event: Event) {
     this.hidePassword.set(!this.hidePassword());
     event.stopPropagation();
   }
 
-  toggleConfirmPasswordVisibility(event:Event){
+  toggleConfirmPasswordVisibility(event: Event) {
     this.hideConfirmPassword.set(!this.hideConfirmPassword());
     event.stopPropagation();
   }
@@ -80,26 +71,33 @@ export class SignupComponent {
     if (this.signupForm.invalid) {
       this._snackBar.open("Some fields are empty", "Ok!")
     } else {
-      if (this.checkPassword(this.signupForm.value.email as string,
+      if (this.checkPassword(this.signupForm.value.password as string,
         this.signupForm.value.confirmPassword as string)) {
         this.userService.signup({
           username: this.signupForm.value.username as string,
-          firstname: this.signupForm.value.firstName as string,
-          lastname: this.signupForm.value.lastName as string,
+          firstName: this.signupForm.value.firstName as string,
+          lastName: this.signupForm.value.lastName as string,
           email: this.signupForm.value.email as string,
           password: this.signupForm.value.password as string,
         }).subscribe({
           error: (err) => {
-            this.toastr.error("The username you selected was already taken", "Oops! Could not create a new user");
+            console.log(err)
+            this._snackBar.open("The username you selected was already taken", "I'll change it!")
           },
           complete: () => {
-            this.toastr.success(`You can now login with your new account`, `Congrats ${this.signupForm.value.username}!`);
+            this._snackBar.open("Account created saccesfully", "Log in!")
             this.router.navigateByUrl("/login");
           }
         });
-        this.toastr.success(`You can now login with your new account`, `Congrats ${this.signupForm.value.username}!`);
-
       }
     }
+  }
+}
+
+
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    const isSubmitted = form && form.submitted;
+    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
   }
 }

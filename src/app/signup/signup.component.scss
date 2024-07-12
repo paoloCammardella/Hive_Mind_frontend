@@ -4,29 +4,28 @@
 
 @import '../../assets/styles/variables';
 
-*{
-  display: flex;
-  flex-direction: column;
+* {
   justify-content: center;
 }
 
-h1{
+h1 {
   color: $text-color;
 }
 
-#signup-content{
+.center {
+  height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#signup-content {
   width: 40%;
   max-width: 480px;
   height: fit-content;
   display: flex;
   flex-direction: column;
   border-radius: 10px;
-  align-items: center;
-  justify-content: center;
-}
-.center {
-  height: 100svh;
-  display: flex;
   align-items: center;
   justify-content: center;
 }

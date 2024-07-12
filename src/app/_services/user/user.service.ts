@@ -14,7 +14,8 @@ export class UserService {
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
-    })
+    }),
+    withCredentials: true
   };
 
   signup(signupRequest: User){

@@ -1,11 +1,10 @@
 @use '../../assets/styles/buttons.scss';
 @use '../../assets/styles/divider.scss';
 @use '../../assets/styles/form.scss';
-
 @import "../../assets/styles/variables";
+@import "../../assets/styles/snackBar.scss"; // Importazione degli stili per snackbar
 
-
-.nav-info{
+.nav-info {
   display: flex;
   flex-direction: column;
   margin: 0 10px;
@@ -41,7 +40,6 @@
     align-items: end;
 
     .forgot-password {
-
       width: fit-content;
     }
   }
