@@ -4,11 +4,14 @@ import { EditorModule } from 'primeng/editor';
 import { SignupComponent } from './signup/signup.component';
 import { FooterComponent } from './footer/footer.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { TokenInterceptorService } from './_services/JWT/token-interceptor-service.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
+  providers:  [],
   imports: [RouterOutlet, EditorModule, SignupComponent, FooterComponent, NavbarComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'

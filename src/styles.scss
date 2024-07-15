@@ -176,3 +176,13 @@ body {
   background: $background-color; /* Colore di sfondo dell'evidenziazione */
   color: $text-color;     /* Colore del testo evidenziato */
 }
+
+.success-snackbar {
+  background-color: green;
+  color: white;
+}
+
+.custom-snackbar {
+  background-color: blue;
+  color: yellow;
+}

@@ -1,16 +1,9 @@
 @use 'sass:color';
 @import '../../assets/styles/variables';
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  height: fit-content;
-  max-height: 20svh;
-}
-
 .footer {
-  position: absolute;
+  z-index: 20;
+  position: relative;
   bottom: 0;
   background-color: $text-color;
   display: flex;

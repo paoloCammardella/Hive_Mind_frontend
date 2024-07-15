@@ -1,0 +1,49 @@
+@import '../../assets/styles/variables';
+
+.list-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    /* Aggiungi un po' di padding per evitare che la lista tocchi i bordi */
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* Assicura che gli elementi della lista siano centrati orizzontalmente */
+    width: 100%;
+}
+
+li {
+    margin: 1rem;
+    width: 60svw;
+    border-radius: 10px;
+    border: 1px solid $accent-color;
+
+    mat-card {
+        border-radius: 10px;
+        background-color: $background-color;
+        width: 100%;
+        /* Imposta una larghezza massima */
+    }
+
+    mat-chip {
+        margin: 1rem;
+        background-color: $background-color;
+        color: $accent-color;
+        transition: background-color 0.3s ease, color 0.3s ease;
+        /* Aggiungi una transizione graduale */
+    }
+
+    mat-chip:hover {
+        background-color: rgba($accent-color, 0.8);
+        /* Colore trasparente */
+        color: $background-color;
+    }
+}

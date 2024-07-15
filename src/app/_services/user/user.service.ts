@@ -11,21 +11,14 @@ export class UserService {
   url = "http://localhost:3000" 
   constructor(private http: HttpClient) {}
 
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json'
-    }),
-    withCredentials: true
-  };
-
   signup(signupRequest: User){
     const url = `${this.url}/signup`; 
     console.log(signupRequest);
-    return this.http.post(url, signupRequest, this.httpOptions);
+    return this.http.post(url, signupRequest);
   }
 
   login(loginRequest: AuthRequest){
     const url = `${this.url}/auth`; 
-    return this.http.post<string>(url, loginRequest, this.httpOptions);
+    return this.http.post<string>(url, loginRequest);
   }
 }

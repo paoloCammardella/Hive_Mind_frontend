@@ -1,5 +1,6 @@
-import { Injectable, WritableSignal, computed, effect, signal } from '@angular/core';
+import { Injectable, WritableSignal, computed, effect, inject, signal } from '@angular/core';
 import { jwtDecode } from "jwt-decode";
+import { TokenInterceptorService } from '../JWT/token-interceptor-service.service';
 import { AuthState } from './auth-state.type';
 
 @Injectable({
@@ -13,6 +14,30 @@ export class AuthService {
     isAuthenticated: this.verifyToken(this.getToken()) //verify it's not expired
   })
 
+    verifyToken(token: string | null): boolean {
+    if(token !== null){
+      try{
+        const decodedToken = jwtDecode(token);
+        const expiration = decodedToken.exp;
+        if(expiration === undefined || Date.now() >= expiration * 1000){
+          return false; //expiration not available or in the past
+        } else {
+          return true; //token not expired
+        }
+      } catch(error) {  //invalid token
+        return false;
+      }
+    }
+    return false;
+  }
+
+  getToken(){
+    return localStorage.getItem("token");
+  }
+
+  getUser(){
+    return localStorage.getItem("user");
+  }
   user = computed(() => this.authState().user);
   token = computed(() => this.authState().token);
   isAuthenticated = computed(() => this.authState().isAuthenticated);
@@ -42,31 +67,6 @@ export class AuthService {
       token: token,
       isAuthenticated: this.verifyToken(token)
     })
-  }
-
-  getToken(){
-    return localStorage.getItem("token");
-  }
-
-  getUser(){
-    return localStorage.getItem("user");
-  }
-
-  verifyToken(token: string | null): boolean {
-    if(token !== null){
-      try{
-        const decodedToken = jwtDecode(token);
-        const expiration = decodedToken.exp;
-        if(expiration === undefined || Date.now() >= expiration * 1000){
-          return false; //expiration not available or in the past
-        } else {
-          return true; //token not expired
-        }
-      } catch(error) {  //invalid token
-        return false;
-      }
-    }
-    return false;
   }
 
   isUserAuthenticated(): boolean {
