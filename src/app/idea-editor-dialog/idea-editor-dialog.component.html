@@ -6,14 +6,18 @@
     <div class="card-input">
       <form [formGroup]="markdownEditor">
         <!-- <p [innerHTML]="psello"></p> -->
-        <mat-form-field appearance="outline" id="idea-title">
-          <mat-label>Idea Title</mat-label>
-          <input matInput formControlName="ideaTitle">
-        </mat-form-field>
+         <mat-form-field appearance="outline" id="idea-title">
+    <mat-label>Idea Title</mat-label>
+    <input matInput maxlength="50" formControlName="ideaTitle">
+  </mat-form-field>
 
         <ngx-editor-menu  [editor]="editor" [toolbar]="toolbar"></ngx-editor-menu>
-        <ngx-editor id="editor" formControlName="editorContent" [editor]="editor" [placeholder]="'Type here...'"></ngx-editor>
-      </form>
+<ngx-editor maxlength="400" id="editor"  formControlName="editorContent" [editor]="editor" [placeholder]="'Type here...'"></ngx-editor>
+     
+<mat-error *ngIf="editorContentControl?.invalid && (editorContentControl?.dirty || editorContentControl?.touched)">
+  <span *ngIf="editorContentControl?.errors">Maximum 400 characters exceeded</span> <!-- Verifica di nullità aggiunta -->
+</mat-error>
+</form>        
     </div>
   </mat-card-content>
 

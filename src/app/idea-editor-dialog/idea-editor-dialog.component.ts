@@ -10,6 +10,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { IdeaService } from '../_services/idea/idea.service';
 import { AuthService } from '../_services/auth/auth.service';
 import { SnackBarService } from '../_services/snackBar/snack-bar.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-idea-editor-dialog',
@@ -23,7 +24,8 @@ import { SnackBarService } from '../_services/snackBar/snack-bar.service';
     MatInputModule,
     MatButtonModule,
     ReactiveFormsModule,
-    NgxEditorModule
+    NgxEditorModule,
+    CommonModule
   ]
 })
 export class IdeaEditorDialogComponent implements OnInit, OnDestroy {
@@ -48,13 +50,32 @@ export class IdeaEditorDialogComponent implements OnInit, OnDestroy {
 
   markdownEditor = new FormGroup({
     editorContent: new FormControl('', [Validators.required(), Validators.maxLength(400)]),
-    ideaTitle: new FormControl('', Validators.required())
+    ideaTitle: new FormControl('', [Validators.required(), Validators.maxLength(50)])
   });
   editor: Editor = new Editor();
   cDate = new Date();
 
   ngOnInit(): void {
-    this.editor = new Editor();
+    // Monitora i cambiamenti nel FormControl per il contenuto dell'editor
+    const editorContentControl = this.markdownEditor.get('editorContent');
+    if (editorContentControl) {
+      editorContentControl.valueChanges.subscribe((value: string | null) => { // Aggiornato il tipo di parametro
+        if (value && value.length > 400) {
+          editorContentControl.setErrors({ maxLengthExceeded: true });
+        } else {
+          editorContentControl.setErrors(null);
+        }
+      });
+    }
+  }
+
+  get editorContentControl() {
+    return this.markdownEditor.get('editorContent');
+  }
+
+  // Getter per accedere al FormControl ideaTitle
+  get ideaTitleControl() {
+    return this.markdownEditor.get('ideaTitle');
   }
 
   // make sure to destory the editor
@@ -86,9 +107,13 @@ export class IdeaEditorDialogComponent implements OnInit, OnDestroy {
           console.log(err);
         }
       });
-    }else if(this.markdownEditor.get('editorContent')?.value?.length as number > 400 ){
-      this.snackBarService.showSnackBar("You can insert up to 400 characters in your idea");
-    }else{
+    } else if (this.markdownEditor.get('editorContent')?.value?.length as number > 400 || this.markdownEditor.get('ideaTitle')?.value?.length as number > 50) {
+      if (this.markdownEditor.get('editorContent')?.value?.length as number > 400) {
+        this.snackBarService.showSnackBar("You can insert up to 400 characters in your idea");
+      } else {
+        this.snackBarService.showSnackBar("The idea title can't be longer than 50 characters");
+      }
+    } else {
       this.snackBarService.showSnackBar("Invalid Idea");
     }
   }
