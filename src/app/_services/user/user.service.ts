@@ -2,23 +2,23 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AuthRequest } from './auth-request.type';
 import { User } from './user.type';
+import { environment } from '../../../environments/environment.development';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  url = "http://localhost:3000" 
   constructor(private http: HttpClient) {}
 
   signup(signupRequest: User){
-    const url = `${this.url}/signup`; 
+    const url = environment.user.signup; 
     console.log(signupRequest);
     return this.http.post(url, signupRequest);
   }
 
   login(loginRequest: AuthRequest){
-    const url = `${this.url}/auth`; 
+    const url = environment.user.auth; 
     return this.http.post<string>(url, loginRequest);
   }
 }

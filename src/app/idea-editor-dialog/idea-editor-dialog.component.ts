@@ -75,10 +75,10 @@ export class IdeaEditorDialogComponent implements OnInit, OnDestroy {
   stripHtmlTags(str: string): string {
     return str.replace(/<\/?[^>]+(>|$)/g, "");
   }
+  
   get editorContentControl() {
     return this.markdownEditor.get('editorContent');
   }
-
   
   get ideaTitleControl() {
     return this.markdownEditor.get('ideaTitle');

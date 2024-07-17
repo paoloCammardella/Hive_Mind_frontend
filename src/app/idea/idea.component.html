@@ -1,23 +1,27 @@
-<ul>
-  <li *ngFor="let item of cardItems; trackBy: trackById">
+<ul *ngIf="cardItems && cardItems.length > 0; else loading">
+  <li *ngFor="let item of cardItems">
     <mat-card class="example-card" appearance="outlined">
       <mat-card-header>
-        <mat-card-title>{{ item.getTitle }}</mat-card-title>
+        <mat-card-title>{{ item?.title }}</mat-card-title>
       </mat-card-header>
-      <mat-card-content>
-        <p>{{ item.getContent }}</p>
-      </mat-card-content>
+      <mat-card-content [innerHTML]="getSafeHtml(item.text)">
+        <p></p>
+      </mat-card-content>  
       <mat-card-footer class="example-card-footer">
-        <mat-chip-set aria-label="Traits">
-          <mat-chip
-            *ngFor="let chip of item.getChips; trackBy: trackByChip"
-            selectable="true"
-            (click)="changeSelected($event, chip)"
-          >
-            {{ chip }}
-          </mat-chip>
-        </mat-chip-set>
+        <button mat-button>
+          <mat-icon>arrow_upward</mat-icon> {{ item.upvote }}
+        </button>
+    
+        <button mat-button>
+          <mat-icon>arrow_downward</mat-icon>{{ item.downvote }}
+        </button>
       </mat-card-footer>
     </mat-card>
   </li>
 </ul>
+<ng-template #loading id="loading">
+  <div id="loading-alert">
+    <img id="loading-img" src="../../assets/image/nothing.png" alt="nothing founds">
+    <p id="loading-text">Seems like nobody is thinking</p>
+  </div>
+</ng-template>

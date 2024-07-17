@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { FooterComponent } from '../footer/footer.component';
 import { RouterOutlet } from '@angular/router';
@@ -10,61 +10,62 @@ import { IdeaComponent } from '../idea/idea.component';
 import { IdeaService } from '../_services/idea/idea.service';
 import { SnackBarService } from '../_services/snackBar/snack-bar.service';
 
-
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [NavbarComponent, FooterComponent, IdeaComponent, RouterOutlet, MatTabsModule],
+  imports: [NavbarComponent, FooterComponent, IdeaComponent, RouterOutlet, MatTabsModule, MatCardModule, MatChipsModule],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   ideaService = inject(IdeaService);
   snackBarService = inject(SnackBarService);
 
-
   selectedIndex: number = 0;
-  popIdeas!: Idea[];
-  contIdeas!: Idea[];
-  unpopIdeas!: Idea[];
+  popIdeas: Idea[] = [];
+  contIdeas: Idea[] = [];
+  unpopIdeas: Idea[] = [];
+
+  ngOnInit() {
+    this.onTabChange(this.selectedIndex);
+  }
 
   onTabChange(index: number): void {
     this.selectedIndex = index;
-    if (index === 0) {
-      this.ideaService.getIdeas("popular").subscribe({
-        next: (ideas) => { // Use "ideas" for clarity
-          this.popIdeas = ideas;
-          console.log('Ideas successfully fetched:', ideas);
-        },
-        error: (err) => {
-          this.snackBarService.showSnackBar("0 popular idea found", 'error');
-          this.popIdeas = []
-          console.log(err);
-        }
-      });
-    } else if (index === 1) {
-      this.ideaService.getIdeas("controversial").subscribe({
-        next: (ideas) => {
-          this.contIdeas = ideas;
-          console.log('Controversial idea found: ', ideas);
-        },
-        error: (err) => {
-          this.snackBarService.showSnackBar("0 controversial idea found.", 'error');
-          this.contIdeas = []
-          console.log(err);
-        }
-      });
-    } else if (index === 2) {
-      console.log(this.ideaService.getIdeas("unpopular").subscribe({
-        next: (response) => {
-          console.log('Controversial idea found: ', response);
-        },
-        error: (err) => {
-          this.snackBarService.showSnackBar("0 unpopular idea found.", 'error');
-          this.unpopIdeas = []
-          console.log(err);
-        }
-      }));
+    let observable = null;
+
+    switch (index) {
+      case 0:
+        observable = this.ideaService.getIdeas("popular");
+        break;
+      case 1:
+        observable = this.ideaService.getIdeas("controversial");
+        break;
+      case 2:
+        observable = this.ideaService.getIdeas("unpopular");
+        break;
+      default:
+        return;
     }
+
+    observable.subscribe({
+      next: (ideas) => {
+        switch (index) {
+          case 0: this.popIdeas = ideas; break;
+          case 1: this.contIdeas = ideas; break;
+          case 2: this.unpopIdeas = ideas; break;
+        }
+        console.log('Ideas fetched:', ideas);
+      },
+      error: (err) => {
+        switch (index) {
+          case 0: this.popIdeas = []; break;
+          case 1: this.contIdeas = []; break;
+          case 2: this.unpopIdeas = []; break;
+        }
+        this.snackBarService.showSnackBar("Error fetching ideas.", 'error');
+        console.error('Error fetching ideas:', err);
+      }
+    });
   }
 }

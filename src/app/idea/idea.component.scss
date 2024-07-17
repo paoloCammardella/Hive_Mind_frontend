@@ -42,3 +42,25 @@ li {
         color: $background-color;
     }
 }
+
+#loading-alert {
+    overflow-y: hidden;
+    display: flex;
+    flex-direction: column;
+    width: 50svw;
+    height: 100svh;
+
+    #loading-img{
+        max-width: 500px;
+    }
+
+    #loading-text {
+        font-size: 1.2em;
+        color: #888;
+        text-align: center;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+}
