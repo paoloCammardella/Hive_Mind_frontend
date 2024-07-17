@@ -5,7 +5,6 @@
     justify-content: center;
     align-items: center;
     padding: 1rem;
-    /* Aggiungi un po' di padding per evitare che la lista tocchi i bordi */
 }
 
 ul {
@@ -16,7 +15,6 @@ ul {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* Assicura che gli elementi della lista siano centrati orizzontalmente */
     width: 100%;
 }
 
@@ -30,7 +28,6 @@ li {
         border-radius: 10px;
         background-color: $background-color;
         width: 100%;
-        /* Imposta una larghezza massima */
     }
 
     mat-chip {
@@ -38,12 +35,10 @@ li {
         background-color: $background-color;
         color: $accent-color;
         transition: background-color 0.3s ease, color 0.3s ease;
-        /* Aggiungi una transizione graduale */
     }
 
     mat-chip:hover {
         background-color: rgba($accent-color, 0.8);
-        /* Colore trasparente */
         color: $background-color;
     }
 }

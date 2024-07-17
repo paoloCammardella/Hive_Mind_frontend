@@ -11,14 +11,12 @@
 
 .progress-container {
   position: relative;
-  /* Adjust to desired height */
   width: 100%;
 }
 
 .mat-tooltip {
   background-color: #fff !important;
   color: $text-color !important;
-  /* Altri stili */
 }
 
 .mat-tooltip.mat-tooltip:before {

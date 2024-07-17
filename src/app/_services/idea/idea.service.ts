@@ -4,16 +4,21 @@ import { IdeaRequest } from './idea-request.type';
 import { Observable, throwError } from 'rxjs';
 import { Idea } from '../../_model/Idea';
 
+enum IdeasType { 'popular', 'unpopular', 'controversial' };
+
 @Injectable({
   providedIn: 'root'
 })
 export class IdeaService {
 
-  url = "http://localhost:3000"
-  constructor(private http: HttpClient) { }
+  url = "http://localhost:3000";
 
-  getIdeas(ideaType: string): Observable<Idea[]> { // Change the return type to 'any' for simplicity
-    if (ideaType) {
+
+  constructor(private http: HttpClient) {
+  }
+
+  getIdeas(ideaType: string): Observable<Idea[]> {
+    if (ideaType in IdeasType) {
       console.log(ideaType);
       const url = `${this.url}/idea/${ideaType}`;
       return this.http.get<Idea[]>(url);

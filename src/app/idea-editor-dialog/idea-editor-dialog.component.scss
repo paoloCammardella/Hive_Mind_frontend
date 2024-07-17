@@ -19,9 +19,7 @@ mat-card-title {
     right: 0;
     bottom: 0;
     background: rgba(0, 0, 0, 0.5);
-    /* Colore e opacità dello sfondo */
     backdrop-filter: blur(10px);
-    /* Intensità della sfocatura */
     z-index: 1;
 }
 
@@ -33,9 +31,7 @@ mat-card-title {
     transform: translate(-50%, -50%);
     background: #fff;
     border-radius: 10px;
-    /* Bordo arrotondato */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    /* Ombra */
     padding: 1rem;
     z-index: 2;
 }
@@ -48,7 +44,7 @@ mat-card-title {
 }
 
 mat-card {
-    max-width: 600px; /* Esempio di larghezza massima desiderata */
+    max-width: 600px; 
     width: 100%;
     margin: auto;
   }

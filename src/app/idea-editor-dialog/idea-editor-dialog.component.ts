@@ -79,12 +79,12 @@ export class IdeaEditorDialogComponent implements OnInit, OnDestroy {
     return this.markdownEditor.get('editorContent');
   }
 
-  // Getter per accedere al FormControl ideaTitle
+  
   get ideaTitleControl() {
     return this.markdownEditor.get('ideaTitle');
   }
 
-  // make sure to destory the editor
+  
   ngOnDestroy(): void {
     this.editor.destroy();
   }
