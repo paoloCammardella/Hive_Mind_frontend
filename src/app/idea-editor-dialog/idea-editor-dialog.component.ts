@@ -59,16 +59,22 @@ export class IdeaEditorDialogComponent implements OnInit, OnDestroy {
     // Monitora i cambiamenti nel FormControl per il contenuto dell'editor
     const editorContentControl = this.markdownEditor.get('editorContent');
     if (editorContentControl) {
-      editorContentControl.valueChanges.subscribe((value: string | null) => { // Aggiornato il tipo di parametro
-        if (value && value.length > 400) {
-          editorContentControl.setErrors({ maxLengthExceeded: true });
-        } else {
-          editorContentControl.setErrors(null);
+      editorContentControl.valueChanges.subscribe((value: string | null) => { 
+        if (value) {
+          const textWithoutTags = this.stripHtmlTags(value);
+          if (textWithoutTags.length > 400) {
+            editorContentControl.setErrors({ maxLengthExceeded: true });
+          } else {
+            editorContentControl.setErrors(null);
+          }
         }
       });
     }
   }
 
+  stripHtmlTags(str: string): string {
+    return str.replace(/<\/?[^>]+(>|$)/g, "");
+  }
   get editorContentControl() {
     return this.markdownEditor.get('editorContent');
   }
@@ -88,22 +94,21 @@ export class IdeaEditorDialogComponent implements OnInit, OnDestroy {
   }
 
   createIdea() {
-    //TODO: salvati l'username nei cookie
     if (this.markdownEditor.valid) {
       this.ideaService.saveIdea({
-        title: this.markdownEditor.get('editorContent')?.value as string,
-        text: this.markdownEditor.get("ideaTitle")?.value as string,
+        text: this.markdownEditor.get('editorContent')?.value as string,
+        title: this.markdownEditor.get("ideaTitle")?.value as string,
         upvote: 0,
         downvote: 0,
         date: this.cDate
       }).subscribe({
         next: (response) => {
-          console.log('idea saved: ', response);
+          console.log('idea succesfully created: ', response);
           this.snackBarService.showSnackBar("Idea sucesfully saved!");
           this.onClose()
         },
         error: (err) => {
-          this.snackBarService.showSnackBar("Unable to save the Idea", '', undefined, 'error');
+          this.snackBarService.showSnackBar("Unable to save the Idea", 'error');
           console.log(err);
         }
       });

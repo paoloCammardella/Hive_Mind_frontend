@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Idea } from '../_model/Idea';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatCardModule } from '@angular/material/card';
@@ -27,17 +27,10 @@ export class IdeaComponent {
   ideaText: SafeHtml = 'prova';
   // this.ideaText = this.sanitizer.bypassSecurityTrustHtml(this.markdownEditor.value.editorContent as string);
 
-  cardItems: Idea[] = [
-    new Idea(1, 'Chihuahua', 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellendus, temporibus.'),
-    new Idea(2, 'Chihuahua', 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellendus, temporibus.'),
-    new Idea(2, 'Chihuahua', 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellendus, temporibus.'),
-    new Idea(2, 'Chihuahua', 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellendus, temporibus.'),
-    new Idea(3, 'Chihuahua', 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellendus, temporibus.')
-    // Aggiungi altri oggetti Idea qui se necessario
-  ];
+   @Input() cardItems!: Idea[];
 
-  trackById(index: number, item: Idea): number {
-    return item.getId();
+  trackById(index: number, item: Idea): string {
+    return item.getId;
   }
 
   trackByChip(index: number, chip: string): string {

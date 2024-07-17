@@ -1,16 +1,16 @@
-@use 'sass:color';
 @import '../../assets/styles/variables';
 
 .footer {
   z-index: 20;
-  position: relative;
+  position: absolute;
   bottom: 0;
   background-color: $text-color;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  width: 100%; /* Assicurati che il footer prenda la larghezza del contenitore */
 
-  @mixin text_design($color: text-color) {
+  @mixin text_design($color: $text-color) {
     color: $color;
     font-weight: bold;
     margin: auto;
@@ -22,7 +22,7 @@
   }
 
   h3 {
-    @include text_design()
+    @include text_design();
   }
 
   .info {
@@ -32,19 +32,18 @@
     margin-top: auto;
     position: absolute;
     width: 100%;
-    bottom: 0 ;
+    bottom: 0;
     h5 {
       @include text_design();
       margin: 0 10px;
     }
   }
 
-
-
   .footer-content {
     display: flex;
-    width: 100svw;
+    width: 100%; /* Cambia da 100svw a 100% */
     justify-content: space-evenly;
+    box-sizing: border-box; /* Assicura che padding/margin non causino overflow */
 
     li a {
       text-decoration: none;
@@ -115,6 +114,5 @@
       margin: 1px;
       padding: 10px;
     }
-  }  
-
+  }
 }

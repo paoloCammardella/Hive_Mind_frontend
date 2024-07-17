@@ -1,9 +1,22 @@
-<mat-tab-group mat-stretch-tabs="false" mat-align-tabs="center" animationDuration="1000ms">
-    <mat-tab label="Popular" id="popular-content">
-        <div class="tab-content">
-            <app-idea></app-idea>
-        </div>
-    </mat-tab>
-    <mat-tab label="Controversial">Content 2</mat-tab>
-    <mat-tab label="Unpopular">Content 3</mat-tab>
+<mat-tab-group
+  mat-stretch-tabs="false"
+  mat-align-tabs="center"
+  animationDuration="1000ms"
+  (selectedIndexChange)="onTabChange($event)"
+>
+  <mat-tab label="Popular" id="popular-content">
+    <div class="tab-content">
+      <app-idea [cardItems]="popIdeas"></app-idea>
+    </div>
+  </mat-tab>
+  <mat-tab label="Controversial">
+    <div class="tab-content">
+      <app-idea [cardItems]="contIdeas"></app-idea>
+    </div>
+  </mat-tab>
+  <mat-tab label="Unpopular">
+    <div class="tab-content">
+      <app-idea [cardItems]="unpopIdeas"></app-idea>
+    </div>
+  </mat-tab>
 </mat-tab-group>
