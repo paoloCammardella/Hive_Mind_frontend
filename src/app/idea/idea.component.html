@@ -3,25 +3,39 @@
     <mat-card class="example-card" appearance="outlined">
       <mat-card-header>
         <mat-card-title>{{ item?.title }}</mat-card-title>
+        <mat-card-subtitle>- {{ item?.user }}</mat-card-subtitle>
       </mat-card-header>
+
+      <mat-divider></mat-divider>
+
       <mat-card-content [innerHTML]="getSafeHtml(item.text)">
         <p></p>
-      </mat-card-content>  
+      </mat-card-content>
+
+      <mat-divider></mat-divider>
+
       <mat-card-footer class="example-card-footer">
-        <button mat-button>
-          <mat-icon>arrow_upward</mat-icon> {{ item.upvote }}
-        </button>
-    
-        <button mat-button>
-          <mat-icon>arrow_downward</mat-icon>{{ item.downvote }}
-        </button>
+        <div class="vote-section">
+          <button (click)="voteIdea('Upvote')" mat-button>
+            <mat-icon>arrow_upward</mat-icon> {{ item.upvote }}
+          </button>
+
+          <button (click)="voteIdea('Downvote')" mat-button>
+            <mat-icon>arrow_downward</mat-icon>{{ item.downvote }}
+          </button>
+        </div>
+        <p>{{ parseDate(item.createdAt) }}</p>
       </mat-card-footer>
     </mat-card>
   </li>
 </ul>
 <ng-template #loading id="loading">
   <div id="loading-alert">
-    <img id="loading-img" src="../../assets/image/nothing.png" alt="nothing founds">
+    <img
+      id="loading-img"
+      src="../../assets/image/nothing.png"
+      alt="nothing founds"
+    />
     <p id="loading-text">Seems like nobody is thinking</p>
   </div>
 </ng-template>

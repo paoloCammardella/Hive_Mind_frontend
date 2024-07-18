@@ -16,51 +16,97 @@ ul {
     justify-content: center;
     align-items: center;
     width: 100%;
-}
+    overflow-y: auto;
 
-li {
-    margin: 1rem;
-    width: 60svw;
-    border-radius: 10px;
-    border: 1px solid $accent-color;
-
-    mat-card {
+    li {
+        width: 60svw;
         border-radius: 10px;
-        background-color: $background-color;
-        width: 100%;
+
+        .example-card {
+            background-color: #f9f1db;
+            /* Beige chiaro */
+            border: 1px solid #e1a948;
+            /* Bordo arancione chiaro */
+            border-radius: 8px;
+            /* Arrotonda gli angoli */
+            padding: 16px;
+            /* Spazio interno */
+            margin: 16px;
+            /* Spazio esterno */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            /* Ombra leggera */
+            color: #333;
+            /* Colore del testo */
+            font-family: 'Arial, sans-serif';
+            /* Font di base */
+        }
+mat-divider{margin-top: 1rem;}
+        mat-card-header {
+            margin-top: 0;
+            color: $text-color;
+            
+            mat-card-title{
+                color: $text-color;
+                font-size: 1.2rem;
+                font-weight: 400;
+            }
+            mat-card-subtitle {
+                font-style: italic;
+                color: #666;
+            }
+        }
+
+        mat-card-content {
+            margin: 1rem 0;
+            line-height: .5;
+        }
+
+
+        .example-card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            .vote-section {
+                button {
+                    background-color: $background-color;
+                    /* Bottone arancione */
+                    border: none;
+                    color: $text-color;
+                    padding: 8px;
+                    margin-right: 4px;
+                    cursor: pointer;
+                    border-radius: 4px;
+                    text-align: center;
+                }
+
+                button:hover {
+                    color: $accent-color;
+                }
+            }
+
+            p {
+                margin: 0;
+                font-size: 0.9em;
+                color: #666;
+            }
+        }
     }
 
-    mat-chip {
-        margin: 1rem;
-        background-color: $background-color;
-        color: $accent-color;
-        transition: background-color 0.3s ease, color 0.3s ease;
-    }
-
-    mat-chip:hover {
-        background-color: rgba($accent-color, 0.8);
-        color: $background-color;
-    }
 }
 
 #loading-alert {
-    overflow-y: hidden;
-    display: flex;
-    flex-direction: column;
-    width: 50svw;
-    height: 100svh;
+    text-align: center;
+    padding: 20px;
 
-    #loading-img{
-        max-width: 500px;
+    #loading-img {
+        width: 100px;
+        height: auto;
+        margin-bottom: 10px;
     }
 
     #loading-text {
         font-size: 1.2em;
-        color: #888;
-        text-align: center;
-        padding: 20px;
-        background-color: #f9f9f9;
-        border: 1px solid #ddd;
-        border-radius: 5px;
+        color: $text-color;
     }
 }

@@ -1,15 +1,16 @@
 @import '../../assets/styles/variables';
 
-.footer {
-  z-index: 20;
+#footer {
   position: absolute;
   bottom: 0;
+  left: 0;
+  z-index: 10;
   background-color: $text-color;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 100%; 
-  
+  width: 100%;
+
   @mixin text_design($color: $text-color) {
     color: $color;
     font-weight: bold;
@@ -33,6 +34,7 @@
     position: absolute;
     width: 100%;
     bottom: 0;
+
     h5 {
       @include text_design();
       margin: 0 10px;
@@ -41,10 +43,10 @@
 
   .footer-content {
     display: flex;
-    width: 100%; 
+    width: 100%;
     justify-content: space-evenly;
-    box-sizing: border-box; 
-    
+    box-sizing: border-box;
+
     li a {
       text-decoration: none;
       color: $background-color;
@@ -92,14 +94,14 @@
 
 // TODO: Crea il footer responsive, guarda il tutorial
 @media (max-width: 768px) {
-  
+
   * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     max-height: fit-content;
   }
-  
+
   .footer-content {
     display: flex;
     flex-direction: column;
