@@ -6,7 +6,8 @@ export const environment = {
     production: false,
     user: {
         signup: url + '/signup',
-        auth: url + '/auth'
+        auth: url + '/auth',
+        like: url + '/user/like/idea'
     },
     idea:{
         idea: url + '/idea'

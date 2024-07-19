@@ -48,6 +48,7 @@ export class HomeComponent implements OnInit {
         return;
     }
 
+    //TODO: Quando faccio il fetch e passo la lista al figlio devo fare in modo che le idee piaciute mi vengano segnate e venga aggiornato il count di up e down vote
     observable.subscribe({
       next: (ideas) => {
         switch (index) {

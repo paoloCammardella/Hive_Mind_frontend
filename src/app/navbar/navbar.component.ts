@@ -52,6 +52,8 @@ export class NavbarComponent {
     });
   }
 
+  //TODO: quando creo un idea devo fare il refresh della lista
+
   performLogout() {
     this.authService.logout();
   }

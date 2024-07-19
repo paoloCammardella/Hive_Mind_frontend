@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { Idea } from '../_model/Idea';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatCardModule } from '@angular/material/card';
@@ -6,26 +6,59 @@ import { CommonModule, DatePipe } from '@angular/common';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
+import { LikeIdea } from '../_model/Idea';
+import { UserService } from '../_services/user/user.service';
 
 @Component({
   selector: 'app-idea',
   standalone: true,
   imports: [MatCardModule, MatChipsModule, CommonModule, MatIconModule, MatDividerModule],
-  providers: [DatePipe], 
+  providers: [DatePipe],
   templateUrl: './idea.component.html',
   styleUrl: './idea.component.scss'
 })
 export class IdeaComponent {
-  constructor(private sanitizer: DomSanitizer, private datePipe: DatePipe){
+
+  userService = inject(UserService);
+
+  constructor(private sanitizer: DomSanitizer, private datePipe: DatePipe) {
     console.log(`Qua siamo dentro il componente Idea ${this.cardItems}`);
+
   }
-  
-  voteIdea(chip: string) {
-    if (chip === 'Upvote') {
-      console.log("Hai fatto upvote")
+
+
+  voteIdea(chip: string, idea: Idea) {
+    let ideaRequest: LikeIdea = {
+      user_id: idea.user,
+      idea_id: idea._id,
+      downVote: false,
+      upVote: false, 
     }
-    else if(chip === 'Downvote'){
-      console.log("Hai fatto downvote")
+    
+    if (chip === 'Upvote') {
+      ideaRequest.upVote = true;
+      this.userService.likeIdea(ideaRequest).subscribe({
+        next: () => {
+          idea.userUpvoted = true;
+          idea.userDownvoted = false;
+          console.log("Hai fatto upvote");
+        },
+        error: (err) => {
+          console.log(err);
+        }
+      });
+    } else if (chip === 'Downvote') {
+      ideaRequest.downVote = true;
+      this.userService.likeIdea(ideaRequest).subscribe({
+        next: () => {
+          idea.userUpvoted = false;
+          idea.userDownvoted = true;
+          console.log("Hai fatto downvote");
+        },
+        error: (err) => {
+          console.log(err);
+        }
+      });
     }
   }
 
@@ -33,7 +66,7 @@ export class IdeaComponent {
     return this.sanitizer.bypassSecurityTrustHtml(text);
   }
 
-  parseDate(isoDate: Date){
+  parseDate(isoDate: Date) {
     return this.datePipe.transform(isoDate, 'dd/MM/yyyy');
   }
 

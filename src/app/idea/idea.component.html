@@ -16,13 +16,14 @@
 
       <mat-card-footer class="example-card-footer">
         <div class="vote-section">
-          <button (click)="voteIdea('Upvote')" mat-button>
+          <button (click)="voteIdea('Upvote', item)" mat-button [ngClass]="{'active': item.userUpvoted}">
             <mat-icon>arrow_upward</mat-icon> {{ item.upvote }}
           </button>
-
-          <button (click)="voteIdea('Downvote')" mat-button>
+          
+          <button (click)="voteIdea('Downvote', item)" mat-button [ngClass]="{'active': item.userDownvoted}">
             <mat-icon>arrow_downward</mat-icon>{{ item.downvote }}
           </button>
+          
         </div>
         <p>{{ parseDate(item.createdAt) }}</p>
       </mat-card-footer>
@@ -31,11 +32,7 @@
 </ul>
 <ng-template #loading id="loading">
   <div id="loading-alert">
-    <img
-      id="loading-img"
-      src="../../assets/image/nothing.png"
-      alt="nothing founds"
-    />
+    <img id="loading-img" src="../../assets/image/nothing.png" alt="nothing founds" />
     <p id="loading-text">Seems like nobody is thinking</p>
   </div>
 </ng-template>
