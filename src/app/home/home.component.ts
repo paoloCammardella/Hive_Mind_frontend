@@ -22,9 +22,7 @@ export class HomeComponent implements OnInit {
   snackBarService = inject(SnackBarService);
 
   selectedIndex: number = 0;
-  popIdeas: Idea[] = [];
-  contIdeas: Idea[] = [];
-  unpopIdeas: Idea[] = [];
+  ideas: Idea[] = [];
 
   ngOnInit() {
     this.onTabChange(this.selectedIndex);
@@ -51,19 +49,11 @@ export class HomeComponent implements OnInit {
     //TODO: Quando faccio il fetch e passo la lista al figlio devo fare in modo che le idee piaciute mi vengano segnate e venga aggiornato il count di up e down vote
     observable.subscribe({
       next: (ideas) => {
-        switch (index) {
-          case 0: this.popIdeas = ideas; break;
-          case 1: this.contIdeas = ideas; break;
-          case 2: this.unpopIdeas = ideas; break;
-        }
+        this.ideas = ideas;
         console.log('Ideas fetched:', ideas);
       },
       error: (err) => {
-        switch (index) {
-          case 0: this.popIdeas = []; break;
-          case 1: this.contIdeas = []; break;
-          case 2: this.unpopIdeas = []; break;
-        }
+        this.ideas = []
         this.snackBarService.showSnackBar("Error fetching ideas.", 'error');
         console.error('Error fetching ideas:', err);
       }

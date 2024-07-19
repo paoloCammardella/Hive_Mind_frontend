@@ -8,6 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { LikeIdea } from '../_model/Idea';
 import { UserService } from '../_services/user/user.service';
+import { IdeaService } from '../_services/idea/idea.service';
 
 @Component({
   selector: 'app-idea',
@@ -20,10 +21,9 @@ import { UserService } from '../_services/user/user.service';
 export class IdeaComponent {
 
   userService = inject(UserService);
+  ideaService = inject(IdeaService);
 
   constructor(private sanitizer: DomSanitizer, private datePipe: DatePipe) {
-    console.log(`Qua siamo dentro il componente Idea ${this.cardItems}`);
-
   }
 
 
@@ -34,26 +34,41 @@ export class IdeaComponent {
       downVote: false,
       upVote: false, 
     }
+
+    //TODO: aggiorna la lista al like.
+    let observable = this.ideaService.getIdeas("popular");
+    observable.subscribe({
+      next: (ideas) => {
+        this.cardItems = ideas;
+      }
+    })
+    let userUpvoted: Boolean = false;
     
     if (chip === 'Upvote') {
       ideaRequest.upVote = true;
+      ideaRequest.downVote = false;
       this.userService.likeIdea(ideaRequest).subscribe({
         next: () => {
+          userUpvoted = true;
+          idea.upvote++;
           idea.userUpvoted = true;
           idea.userDownvoted = false;
-          console.log("Hai fatto upvote");
         },
         error: (err) => {
           console.log(err);
         }
       });
     } else if (chip === 'Downvote') {
+      ideaRequest.upVote = false;
       ideaRequest.downVote = true;
       this.userService.likeIdea(ideaRequest).subscribe({
         next: () => {
+          idea.downvote++;
+          if(userUpvoted){
+            idea.upvote--;
+          }
           idea.userUpvoted = false;
           idea.userDownvoted = true;
-          console.log("Hai fatto downvote");
         },
         error: (err) => {
           console.log(err);
