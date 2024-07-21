@@ -7,9 +7,11 @@ export const environment = {
     user: {
         signup: url + '/signup',
         auth: url + '/auth',
-        like: url + 'user/like/idea'
+        like: url + '/user/like/idea',
+        votes: url + '/user/vote'
     },
     idea:{
-        idea: url + '/idea'
+        idea: url + '/idea',
+        comment: url + '/comment'
     }
 };

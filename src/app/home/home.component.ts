@@ -8,7 +8,9 @@ import { MatChipsModule } from '@angular/material/chips';
 import { Idea } from '../_model/Idea';
 import { IdeaComponent } from '../idea/idea.component';
 import { IdeaService } from '../_services/idea/idea.service';
+import { UserService } from '../_services/user/user.service';
 import { SnackBarService } from '../_services/snackBar/snack-bar.service';
+import { LikeIdea } from '../_model/Idea';
 
 @Component({
   selector: 'app-home',
@@ -19,44 +21,89 @@ import { SnackBarService } from '../_services/snackBar/snack-bar.service';
 })
 export class HomeComponent implements OnInit {
   ideaService = inject(IdeaService);
+  userService = inject(UserService);
   snackBarService = inject(SnackBarService);
 
+  totalElements: number = 0;
   selectedIndex: number = 0;
+  size: number = 0;
+  page: number = 0;
   ideas: Idea[] = [];
+  votedIdeas: LikeIdea[] = [];
 
   ngOnInit() {
-    this.onTabChange(this.selectedIndex);
+    this.getIdeas(this.selectedIndex);
   }
 
-  onTabChange(index: number): void {
+  loadMoreIdeas(pageIndex: number) {
+    this.page = pageIndex;
+    this.getIdeas(this.selectedIndex);
+  }
+
+  getIdeas(index: number): void {
     this.selectedIndex = index;
     let observable = null;
 
     switch (index) {
       case 0:
-        observable = this.ideaService.getIdeas("popular");
+        observable = this.ideaService.getIdeas("popular", this.size, this.page);
         break;
       case 1:
-        observable = this.ideaService.getIdeas("controversial");
+        observable = this.ideaService.getIdeas("controversial", this.size, this.page);
         break;
       case 2:
-        observable = this.ideaService.getIdeas("unpopular");
+        observable = this.ideaService.getIdeas("unpopular", this.size, this.page);
         break;
       default:
         return;
     }
 
-    //TODO: Quando faccio il fetch e passo la lista al figlio devo fare in modo che le idee piaciute mi vengano segnate e venga aggiornato il count di up e down vote
     observable.subscribe({
       next: (ideas) => {
-        this.ideas = ideas;
-        console.log('Ideas fetched:', ideas);
+        this.fetchUserVotes()
+        this.ideas = ideas?.content;
+        this.totalElements = ideas?.totalElements;
       },
       error: (err) => {
-        this.ideas = []
+        this.ideas = [];
         this.snackBarService.showSnackBar("Error fetching ideas.", 'error');
         console.error('Error fetching ideas:', err);
       }
     });
   }
+
+  fetchUserVotes(): void {
+    const userId = localStorage.getItem('user');
+    if (!userId) {
+      console.error('User ID not found in localStorage');
+      return;
+    }
+
+    this.userService.getUserVotes(userId).subscribe({
+      next: (votes: LikeIdea[]) => {
+        console.log('User votes fetched:', votes);
+        this.votedIdeas = votes;
+        this.updateIdeasWithVotes();
+      },
+      error: (err) => {
+        console.error('Error fetching user votes:', err);
+      }
+    });
+  }
+
+
+  updateIdeasWithVotes(): void {
+    if (this.ideas) {
+      this.ideas.forEach(idea => {
+        const vote = this.votedIdeas.find(v => v.idea_id === idea._id);
+        if (vote) {
+          idea.userUpvoted = vote.upVote;
+          idea.userDownvoted = vote.downVote;
+          console.log(`Idea ID: ${idea._id}, Upvoted: ${idea.userUpvoted}, Downvoted: ${idea.userDownvoted}`);
+        }
+      });
+    }
+  }
+
+
 }

@@ -1,0 +1,17 @@
+<mat-expansion-panel (opened)="panelOpenState.set(true)" (closed)="panelOpenState.set(false)">
+    <mat-expansion-panel-header>
+        <mat-panel-title> Self aware panel </mat-panel-title>
+        <mat-panel-description>
+            Currently I am {{panelOpenState() ? 'open' : 'closed'}}
+        </mat-panel-description>
+    </mat-expansion-panel-header>
+    <form class="comment-form">
+        <mat-form-field class="example-full-width" appearance="outline" class="input">
+            <mat-label>Favorite food</mat-label>
+            <input matInput placeholder="Great idea!!">
+        </mat-form-field>
+    </form>
+    <ul>
+        <li></li>
+    </ul>
+</mat-expansion-panel>

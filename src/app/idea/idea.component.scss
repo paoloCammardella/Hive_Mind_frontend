@@ -1,3 +1,5 @@
+@use '../../assets/styles/form.scss';
+
 @import '../../assets/styles/variables';
 
 .list-container {
@@ -115,4 +117,14 @@ mat-divider{margin-top: 1rem;}
         color: $text-color;
     }
 }
+  
+mat-expansion-panel {
+    background-color: $background-color; // stesso colore di sfondo della carta
+    box-shadow: none; // rimuove l'ombra di fondo
+    border: none; // rimuove il bordo
+    margin: 0; // rimuove il margine per allineare meglio
+    padding: 0; // rimuove il padding per allineare meglio
+}
+  
+
   
