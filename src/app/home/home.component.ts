@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, ViewChild } from '@angular/core';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { FooterComponent } from '../footer/footer.component';
 import { RouterOutlet } from '@angular/router';
@@ -11,6 +11,7 @@ import { IdeaService } from '../_services/idea/idea.service';
 import { UserService } from '../_services/user/user.service';
 import { SnackBarService } from '../_services/snackBar/snack-bar.service';
 import { LikeIdea } from '../_model/Idea';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-home',
@@ -26,33 +27,38 @@ export class HomeComponent implements OnInit {
 
   totalElements: number = 0;
   selectedIndex: number = 0;
-  size: number = 0;
   page: number = 0;
   ideas: Idea[] = [];
   votedIdeas: LikeIdea[] = [];
 
   ngOnInit() {
-    this.getIdeas(this.selectedIndex);
+    this.getIdeas(this.selectedIndex, 0);
+  }
+
+  onTabChange(index: number) {
+    this.selectedIndex = index;
+    this.page = 0;
+    this.getIdeas(index, this.page);
   }
 
   loadMoreIdeas(pageIndex: number) {
     this.page = pageIndex;
-    this.getIdeas(this.selectedIndex);
+    this.getIdeas(this.selectedIndex, this.page);
   }
 
-  getIdeas(index: number): void {
+  getIdeas(index: number, page: number): void {
     this.selectedIndex = index;
     let observable = null;
 
     switch (index) {
       case 0:
-        observable = this.ideaService.getIdeas("popular", this.size, this.page);
+        observable = this.ideaService.getIdeas("popular", page);
         break;
       case 1:
-        observable = this.ideaService.getIdeas("controversial", this.size, this.page);
+        observable = this.ideaService.getIdeas("controversial", page);
         break;
       case 2:
-        observable = this.ideaService.getIdeas("unpopular", this.size, this.page);
+        observable = this.ideaService.getIdeas("unpopular", page);
         break;
       default:
         return;
@@ -61,8 +67,9 @@ export class HomeComponent implements OnInit {
     observable.subscribe({
       next: (ideas) => {
         this.fetchUserVotes()
-        this.ideas = ideas?.content;
-        this.totalElements = ideas?.totalElements;
+        this.ideas = ideas.content;
+        this.totalElements = ideas.totalElements;
+        console.log('fetched Ideas ' + ideas.content);
       },
       error: (err) => {
         this.ideas = [];
@@ -104,6 +111,4 @@ export class HomeComponent implements OnInit {
       });
     }
   }
-
-
 }

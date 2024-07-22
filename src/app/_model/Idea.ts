@@ -11,6 +11,13 @@ export interface Idea {
   userDownvoted?: boolean;
 }
 
+export interface ContentResponse<T> {
+  content: T[];
+  totalPages: number;
+  currentPage: number;
+  pageSize: number;
+  totalElements: number; 
+}
 
 export interface LikeIdea {
   user_id: string,

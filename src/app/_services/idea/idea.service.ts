@@ -5,6 +5,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { environment } from '../../../environments/environment.development';
 import { CommentRequest } from './comment-request.type';
+import { ContentResponse, Idea } from '../../_model/Idea';
 
 enum IdeasType { popular = 'popular', unpopular = 'unpopular', controversial = 'controversial' };
 
@@ -15,12 +16,12 @@ export class IdeaService {
 
   constructor(private http: HttpClient) { }
 
-  getIdeas(ideaType: string, size: number, page: number): Observable<any> {
+  getIdeas(ideaType: string, page: number): Observable<ContentResponse<Idea>> {
     if (Object.values(IdeasType).includes(ideaType as IdeasType)) {
       console.log(ideaType);
-      const params = new HttpParams().set('size', size.toString()).set('page', page.toString());
+      const params = new HttpParams().set('page', page.toString());
       const url = environment.idea.idea + '/' + ideaType;
-      return this.http.get<any>(url, {params}).pipe(
+      return this.http.get<ContentResponse<Idea>>(url, {params}).pipe(
         catchError(this.handleError)
       );
     } else {

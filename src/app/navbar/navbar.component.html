@@ -12,15 +12,11 @@
       matTooltip="Open profile menu" matTooltipClass="mat-tooltip">
       <div class="navBar-button">
         <mat-icon>person</mat-icon>
-        <label for="mat-icon">menu</label>
+        <label for="mat-icon">{{currentUser}}</label>
       </div>
     </button>
   </div>
   <mat-menu #menu="matMenu" backdropClass="menu">
-    <button mat-menu-item>
-      <mat-icon>password</mat-icon>
-      <span>Change password</span>
-    </button>
     <button mat-menu-item routerLink="/" (click)="performLogout()">
       <mat-icon>logout</mat-icon>
       <span>Log out</span>

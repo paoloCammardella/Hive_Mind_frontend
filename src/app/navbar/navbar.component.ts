@@ -41,7 +41,10 @@ export class NavbarComponent {
   snackBar = inject(SnackBarService);
   authService = inject(AuthService);
 
-  openIdeaEditor(): void {
+  currentUser = localStorage.getItem('user') as string;
+
+
+  openIdeaEditor(): void { 
     const dialogRef = this.dialog.open(IdeaEditorDialogComponent, {
       width: '500px',
       backdropClass: 'blur-background'
@@ -52,7 +55,6 @@ export class NavbarComponent {
     });
   }
 
-  //TODO: quando creo un idea devo fare il refresh della lista
 
   performLogout() {
     this.authService.logout();

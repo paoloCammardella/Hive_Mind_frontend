@@ -35,8 +35,7 @@
       </mat-card>
     </li>
   </ul>
-  <!-- //TODO input che metta totalElements al posto di card items -->
-  <mat-paginator [length]="this.totalElements" [pageSize]="4" (page)="onPageChange($event)" aria-label="Select page">
+  <mat-paginator #paginator [length]="this.totalElements" [pageSize]="10" (page)="onPageChange($event)" aria-label="Select page">
   </mat-paginator>
 
 <ng-template #loading id="loading">

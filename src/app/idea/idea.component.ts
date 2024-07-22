@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, inject, signal } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild, inject, signal, viewChild } from '@angular/core';
 import { Idea } from '../_model/Idea';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatCardModule } from '@angular/material/card';
@@ -9,7 +9,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { LikeIdea } from '../_model/Idea';
 import { UserService } from '../_services/user/user.service';
 import { IdeaService } from '../_services/idea/idea.service';
-import {MatPaginatorIntl, MatPaginatorModule, PageEvent} from '@angular/material/paginator';
+import { MatPaginator, MatPaginatorIntl, MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { CommentComponent } from "../comment/comment.component";
 
@@ -23,21 +23,25 @@ import { CommentComponent } from "../comment/comment.component";
 })
 export class IdeaComponent {
 
-  @Output() pageNumber = new EventEmitter<number>();
-onPageChange($event: PageEvent) {
-  this.pageNumber.emit($event.pageIndex);
-  console.log($event);
-}
-
   userService = inject(UserService);
   ideaService = inject(IdeaService);
 
-
+  @Output() pageNumber = new EventEmitter<number>();
   @Input() cardItems!: Idea[];
   @Input() category!: number;
   @Input() totalElements!: number;
+  @ViewChild('paginator') paginator!: MatPaginator;
 
   constructor(private sanitizer: DomSanitizer, private datePipe: DatePipe) {
+  }
+
+  onPageChange($event: PageEvent) {
+    this.pageNumber.emit($event.pageIndex);
+    console.log($event);
+  }
+
+  ngOnInit(){
+    this.paginator.firstPage(); 
   }
 
   voteIdea(chip: string, idea: Idea) {
