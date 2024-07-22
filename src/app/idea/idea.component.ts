@@ -61,7 +61,7 @@ onPageChange($event: PageEvent) {
           idea.userDownvoted = false;
         },
         error: (err) => {
-          console.log(err);
+          console.error('user voted his own idea');
         }
       });
     } else if (chip === 'Downvote') {
@@ -77,7 +77,7 @@ onPageChange($event: PageEvent) {
           idea.userDownvoted = true;
         },
         error: (err) => {
-          console.log(err);
+          console.error('user voted his own idea');
         }
       });
     }

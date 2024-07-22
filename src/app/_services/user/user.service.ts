@@ -30,6 +30,8 @@ export class UserService {
 
   likeIdea(ideaRequest: LikeIdea){
     const url = environment.user.like;
-    return this.http.post(url, ideaRequest);
+    const username = localStorage.getItem("user") as string;
+    const params = new HttpParams().set('username', username);
+    return this.http.post(url, ideaRequest, {params});
   }
 }
