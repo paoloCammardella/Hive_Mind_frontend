@@ -1,42 +1,46 @@
+<ul *ngIf="cardItems && cardItems.length > 0; else loading">
+  <li *ngFor="let item of cardItems">
+    <mat-card class="example-card" appearance="outlined">
+      <mat-card-header>
+        <mat-card-title>{{ item?.title }}</mat-card-title>
+        <mat-card-subtitle>- {{ item?.user }}</mat-card-subtitle>
+      </mat-card-header>
 
-  <ul *ngIf="cardItems && cardItems.length > 0; else loading">
-    <li *ngFor="let item of cardItems">
-      <mat-card class="example-card" appearance="outlined">
-        <mat-card-header>
-          <mat-card-title>{{ item?.title }}</mat-card-title>
-          <mat-card-subtitle>- {{ item?.user }}</mat-card-subtitle>
-        </mat-card-header>
+      <mat-divider></mat-divider>
 
-        <mat-divider></mat-divider>
+      <mat-card-content [innerHTML]="getSafeHtml(item.text)">
+        <p></p>
+      </mat-card-content>
 
-        <mat-card-content [innerHTML]="getSafeHtml(item.text)">
-          <p></p>
-        </mat-card-content>
+      <mat-divider></mat-divider>
 
-        <mat-divider></mat-divider>
+      <mat-card-footer class="example-card-footer">
+        <div class="voteNdate">
+          <div class="vote-section">
+            <button (click)="voteIdea('Upvote', item)" mat-button [ngClass]="{'active': item.userUpvoted}">
+              <mat-icon>arrow_upward</mat-icon> {{ item.upvote }}
+            </button>
 
-        <mat-card-footer class="example-card-footer">
-          <div class="voteNdate">
-            <div class="vote-section">
-              <button (click)="voteIdea('Upvote', item)" mat-button [ngClass]="{'active': item.userUpvoted}">
-                <mat-icon>arrow_upward</mat-icon> {{ item.upvote }}
-              </button>
-
-              <button (click)="voteIdea('Downvote', item)" mat-button [ngClass]="{'active': item.userDownvoted}">
-                <mat-icon>arrow_downward</mat-icon>{{ item.downvote }}
-              </button>
-
-            </div>
-            <p>{{ parseDate(item.createdAt) }}</p>
+            <button (click)="voteIdea('Downvote', item)" mat-button [ngClass]="{'active': item.userDownvoted}">
+              <mat-icon>arrow_downward</mat-icon>{{ item.downvote }}
+            </button>
           </div>
-          <!-- <app-comment></app-comment> -->
-        </mat-card-footer>
+          <p>{{ parseDate(item.createdAt) }}</p>
+        </div>
+        <app-comment id="comments"></app-comment>
+      </mat-card-footer>
+    </mat-card>
+  </li>
+</ul>
 
-      </mat-card>
-    </li>
-  </ul>
-  <mat-paginator #paginator [length]="this.totalElements" [pageSize]="10" (page)="onPageChange($event)" aria-label="Select page">
-  </mat-paginator>
+<mat-paginator #paginator 
+[length]="this.totalElements"
+[pageSize]="10"
+(page)="onPageChange($event)"
+[pageIndex]="pageIndex"
+[showFirstLastButtons]="true"
+aria-label="Select page">
+</mat-paginator>
 
 <ng-template #loading id="loading">
   <div id="loading-alert">

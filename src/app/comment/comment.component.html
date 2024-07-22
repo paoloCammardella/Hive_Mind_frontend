@@ -1,17 +1,24 @@
-<mat-expansion-panel (opened)="panelOpenState.set(true)" (closed)="panelOpenState.set(false)">
+<mat-expansion-panel id="panel" (opened)="getComments()">
     <mat-expansion-panel-header>
-        <mat-panel-title> Self aware panel </mat-panel-title>
-        <mat-panel-description>
-            Currently I am {{panelOpenState() ? 'open' : 'closed'}}
-        </mat-panel-description>
+        <mat-panel-title> Write your thoughts </mat-panel-title>
     </mat-expansion-panel-header>
-    <form class="comment-form">
-        <mat-form-field class="example-full-width" appearance="outline" class="input">
-            <mat-label>Favorite food</mat-label>
-            <input matInput placeholder="Great idea!!">
-        </mat-form-field>
-    </form>
-    <ul>
-        <li></li>
+    <div id="comment-section">
+        <form class="form-content" [formGroup]="commentForm" (submit)="publishComment()">
+            <mat-form-field appearance="outline" class="input" id="comment-input">
+                <mat-label>comment</mat-label>
+                <input matInput type="text" formControlName="commentText" placeholder="Great Idea!!!" />
+                <mat-icon matSuffix>send</mat-icon>
+            </mat-form-field>
+        </form>
+    </div>
+
+    <ul *ngIf="comments && comments.length > 0; else loading">
+        <li *ngFor="let item of comments"><div id="comment"><h4>{{item.username}} -</h4><p>{{item.text}}</p></div></li>
     </ul>
+    <ng-template #loading id="loading">
+        <div id="loading-alert">
+            <img id="loading-img" src="../../assets/image/nothing.png" alt="nothing founds" />
+            <p id="loading-text">No comments yet</p>
+        </div>
+    </ng-template>
 </mat-expansion-panel>

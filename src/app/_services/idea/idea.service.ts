@@ -4,7 +4,7 @@ import { IdeaRequest } from './idea-request.type';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { environment } from '../../../environments/environment.development';
-import { CommentRequest } from './comment-request.type';
+import { Comment } from './comment-request.type';
 import { ContentResponse, Idea } from '../../_model/Idea';
 
 enum IdeasType { popular = 'popular', unpopular = 'unpopular', controversial = 'controversial' };
@@ -37,7 +37,7 @@ export class IdeaService {
     );
   }
 
-  commentIdea(commentRequest: CommentRequest) {
+  commentIdea(commentRequest: Comment) {
     console.log(`This is the comment: ${commentRequest}`);
     const url = environment.idea.comment;
     return this.http.post(url, commentRequest).pipe(catchError(this.handleError));

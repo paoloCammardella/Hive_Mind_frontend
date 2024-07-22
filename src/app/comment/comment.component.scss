@@ -1,0 +1,50 @@
+@use '../../assets/styles/form.scss';
+@import '../../assets/styles/variables';
+
+#loading-alert {
+    text-align: center;
+    padding: 20px;
+
+    #loading-img {
+        width: 100px;
+        height: auto;
+        margin-bottom: 10px;
+    }
+
+    #loading-text {
+        font-size: 1.2em;
+        color: $text-color;
+    }
+}
+
+#panel{
+    background-color: $background-color;
+    box-shadow: none;
+    ul{
+        list-style: none;
+        li{
+            border: 1px solid lighten($color: $accent-color, $amount: 20%);
+            background-color: darken($background-color, 3%);
+            border-radius: 10px;
+
+            padding-left: .4rem;
+        }
+    }
+
+    #comment-section{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        #comment-input{
+            width: 100%;
+            height: fit-content;
+        }
+    }
+    #comment{
+        display: flex;
+        align-items: center;
+        h4{
+            margin-right: .5rem;
+        }
+    }
+}

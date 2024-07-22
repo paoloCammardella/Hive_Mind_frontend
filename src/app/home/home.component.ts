@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, ViewChild } from '@angular/core';
+import { Component, inject, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { FooterComponent } from '../footer/footer.component';
 import { RouterOutlet } from '@angular/router';
@@ -11,7 +11,6 @@ import { IdeaService } from '../_services/idea/idea.service';
 import { UserService } from '../_services/user/user.service';
 import { SnackBarService } from '../_services/snackBar/snack-bar.service';
 import { LikeIdea } from '../_model/Idea';
-import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-home',
@@ -20,6 +19,7 @@ import { MatPaginator } from '@angular/material/paginator';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
+
 export class HomeComponent implements OnInit {
   ideaService = inject(IdeaService);
   userService = inject(UserService);
@@ -97,7 +97,6 @@ export class HomeComponent implements OnInit {
       }
     });
   }
-
 
   updateIdeasWithVotes(): void {
     if (this.ideas) {

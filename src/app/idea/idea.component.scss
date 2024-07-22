@@ -26,32 +26,37 @@ ul {
 
         .example-card {
             background-color: #f9f1db;
-            /* Beige chiaro */
             border: 1px solid #e1a948;
-            /* Bordo arancione chiaro */
             border-radius: 8px;
-            /* Arrotonda gli angoli */
             padding: 16px;
-            /* Spazio interno */
             margin: 16px;
-            /* Spazio esterno */
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            /* Ombra leggera */
             color: #333;
-            /* Colore del testo */
             font-family: 'Arial, sans-serif';
-            /* Font di base */
+
+            .voteNdate {
+                width: 100%;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
         }
-mat-divider{margin-top: 1rem;}
+
+        mat-divider {
+            margin-top: 1rem;
+        }
+
         mat-card-header {
             margin-top: 0;
             color: $text-color;
-            
-            mat-card-title{
+
+            mat-card-title {
                 color: $text-color;
                 font-size: 1.2rem;
                 font-weight: 400;
             }
+
             mat-card-subtitle {
                 font-style: italic;
                 color: #666;
@@ -66,13 +71,13 @@ mat-divider{margin-top: 1rem;}
 
         .example-card-footer {
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: space-between;
 
             .vote-section {
                 button {
                     background-color: $background-color;
-                    /* Bottone arancione */
                     border: none;
                     color: $text-color;
                     padding: 8px;
@@ -88,10 +93,12 @@ mat-divider{margin-top: 1rem;}
 
                 .active {
                     color: $accent-color;
-                    
-                  }
-            }
 
+                }
+            }
+            #comments{
+                width: 100%;
+            }
             p {
                 margin: 0;
                 font-size: 0.9em;
@@ -117,14 +124,11 @@ mat-divider{margin-top: 1rem;}
         color: $text-color;
     }
 }
-  
+
 mat-expansion-panel {
-    background-color: $background-color; // stesso colore di sfondo della carta
+    background-color: $background-color;
     box-shadow: none; // rimuove l'ombra di fondo
     border: none; // rimuove il bordo
     margin: 0; // rimuove il margine per allineare meglio
     padding: 0; // rimuove il padding per allineare meglio
 }
-  
-
-  
