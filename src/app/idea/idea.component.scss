@@ -1,0 +1,180 @@
+@use '../../assets/styles/form.scss';
+
+@import '../../assets/styles/variables';
+
+.list-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    overflow-y: auto;
+
+    li {
+        width: 60svw;
+        border-radius: 10px;
+
+        .example-card {
+            background-color: #f9f1db;
+            border: 1px solid #e1a948;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 16px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            color: #333;
+            font-family: 'Arial, sans-serif';
+
+            .voteNdate {
+                width: 100%;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+        }
+
+        mat-divider {
+            margin-top: 1rem;
+        }
+
+        mat-card-header {
+            margin-top: 0;
+            color: $text-color;
+            word-break: break-all;
+            overflow-wrap: break-word;
+            white-space: normal;
+
+            mat-card-title {
+                color: $text-color;
+                font-size: 1.2rem;
+                font-weight: 400;
+            }
+
+            mat-card-subtitle {
+                font-style: italic;
+                color: #666;
+            }
+        }
+
+        mat-card-content {
+            margin: 1rem 0;
+            word-break: break-all;
+            overflow-wrap: break-word;
+            white-space: normal;
+        }
+
+
+        .example-card-footer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+
+            .vote-section {
+                button {
+                    background-color: $background-color;
+                    border: none;
+                    color: $text-color;
+                    padding: 8px;
+                    margin-right: 4px;
+                    cursor: pointer;
+                    border-radius: 4px;
+                    text-align: center;
+                }
+
+                button:hover {
+                    color: $accent-color;
+                }
+
+                .active {
+                    color: $accent-color;
+
+                }
+            }
+
+            #comments {
+                width: 100%;
+            }
+
+            p {
+                margin: 0;
+                font-size: 0.9em;
+                color: #666;
+            }
+        }
+    }
+
+}
+
+#loading-alert {
+    text-align: center;
+    padding: 20px;
+
+    #loading-img {
+        width: 100px;
+        height: auto;
+        margin-bottom: 10px;
+    }
+
+    #loading-text {
+        font-size: 1.2em;
+        color: $text-color;
+    }
+}
+
+mat-expansion-panel {
+    background-color: $background-color;
+    box-shadow: none;
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+
+@media screen and (max-width: 540px) {
+    mat-card-content {
+        height: 100%;
+        word-break: break-all;
+        overflow-wrap: break-word;
+        white-space: normal;
+    }
+
+    ul {
+        width: 100%;
+        overflow-x: hidden;
+        li {
+            max-width: 100%;
+            width: 100%;
+        }
+    }
+
+    #comments {
+        max-width: 100%;
+        width: 100%;
+        font-size: 4svw;
+    }
+
+    mat-card-header {
+
+        mat-card-title {
+            
+            color: $text-color;
+            font-size: 1.2rem;
+            font-weight: 400;
+        }
+
+        mat-card-subtitle {
+            font-style: italic;
+            color: #666;
+        }
+    }
+}

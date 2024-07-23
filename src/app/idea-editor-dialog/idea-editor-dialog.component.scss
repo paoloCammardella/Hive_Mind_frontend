@@ -1,0 +1,50 @@
+mat-card-title {
+    margin-bottom: 1rem;
+}
+
+#idea-title {
+    width: 100%;
+}
+
+.card-input {
+    display: flex;
+    flex-direction: column;
+}
+
+:host::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    z-index: 1;
+}
+
+.idea-card {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    height: fit-content;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 1rem;
+    z-index: 2;
+}
+
+::ng-deep #editor > div > div{
+    min-height: 200px;
+    height: auto;
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+mat-card {
+    max-width: 600px; 
+    width: 100%;
+    margin: auto;
+  }

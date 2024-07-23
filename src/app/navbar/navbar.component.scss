@@ -1,0 +1,40 @@
+@import '../../assets/styles/variables';
+@import '../../assets/styles/toolTip.scss';
+
+.navigation {
+  background-color: $background-color;
+  display: flex;
+  padding: .5em;
+  top: 0;
+  justify-content: space-between;
+}
+
+.progress-container {
+  position: relative;
+  width: 100%;
+}
+
+.mat-tooltip {
+  background-color: #fff !important;
+  color: $text-color !important;
+}
+
+.mat-tooltip.mat-tooltip:before {
+  border-color: #fff transparent !important;
+}
+
+.button-menu{
+  display: flex;
+  align-items: center;
+}
+
+.navBar-button{
+  white-space: nowrap;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+ label{
+  font-size: .7rem;
+ }
+}

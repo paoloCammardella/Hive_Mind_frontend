@@ -1,0 +1,27 @@
+<mat-card class="idea-card">
+  <mat-card-header>
+    <mat-card-title>Create New Idea</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="card-input">
+      <form [formGroup]="markdownEditor">
+         <mat-form-field appearance="outline" id="idea-title">
+    <mat-label>Idea Title</mat-label>
+    <input matInput maxlength="50" formControlName="ideaTitle">
+  </mat-form-field>
+
+        <ngx-editor-menu  [editor]="editor" [toolbar]="toolbar"></ngx-editor-menu>
+<ngx-editor maxlength="400" id="editor"  formControlName="editorContent" [editor]="editor" [placeholder]="'Type here...'"></ngx-editor>
+     
+<mat-error *ngIf="editorContentControl?.invalid && (editorContentControl?.dirty || editorContentControl?.touched)">
+  <span *ngIf="editorContentControl?.errors">Maximum 400 characters exceeded</span> <!-- Verifica di nullità aggiunta -->
+</mat-error>
+</form>        
+    </div>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <button mat-button (click)="onClose()">Cancel</button>
+    <button mat-button color="primary" (click)="createIdea()">Save</button>
+  </mat-card-actions>
+</mat-card>

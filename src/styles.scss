@@ -1,0 +1,188 @@
+@use '@angular/material' as mat;
+@import "./assets/styles/variables";
+@import "./assets/styles/snackBar.scss"; // Importazione corretta
+@include mat.core();
+
+$custom-accent-palette: (
+  50: #fff7e0,
+  100: #ffe4b3,
+  200: #ffcf80,
+  300: #ffba4d,
+  400: #ffa929,
+  500: #f4b828,
+  // Colore principale
+  600: #f0a424,
+  700: #e58e20,
+  800: #db7a1c,
+  900: #cc5b14,
+  A100: #ffe4b3,
+  A200: #ffcf80,
+  A400: #ffa929,
+  A700: #e58e20,
+  contrast: (50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: rgba(black, 0.87),
+    400: rgba(black, 0.87),
+    500: rgba(black, 0.87),
+    600: rgba(black, 0.87),
+    700: white,
+    800: white,
+    900: white,
+    A100: rgba(black, 0.87),
+    A200: rgba(black, 0.87),
+    A400: rgba(black, 0.87),
+    A700: white,
+  )
+);
+
+$custom-secondary-palette: (
+  50: #fffaf2,
+  100: #fff1e0,
+  200: #ffe7cc,
+  300: #ffddb8,
+  400: #ffd5a8,
+  500: #fcebc5,
+  // Colore principale
+  600: #f8d59c,
+  700: #f4c073,
+  800: #efac4b,
+  900: #e77a00,
+  A100: #fff1e0,
+  A200: #ffe7cc,
+  A400: #ffd5a8,
+  A700: #f4c073,
+  contrast: (50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: rgba(black, 0.87),
+    400: rgba(black, 0.87),
+    500: rgba(black, 0.87),
+    600: rgba(black, 0.87),
+    700: rgba(black, 0.87),
+    800: rgba(black, 0.87),
+    900: rgba(black, 0.87),
+    A100: rgba(black, 0.87),
+    A200: rgba(black, 0.87),
+    A400: rgba(black, 0.87),
+    A700: rgba(black, 0.87),
+  )
+);
+
+
+$custom-primary-palette: (
+  50: #fff7e0,
+  100: #ffe4b3,
+  200: #ffcf80,
+  300: #ffba4d,
+  400: #ffa929,
+  500: #f8b828,
+  // Colore principale
+  600: #f0a424,
+  700: #e58e20,
+  800: #db7a1c,
+  900: #cc5b14,
+  A100: #ffe4b3,
+  A200: #ffcf80,
+  A400: #ffa929,
+  A700: #e58e20,
+  contrast: (50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: rgba(black, 0.87),
+    400: rgba(black, 0.87),
+    500: rgba(black, 0.87),
+    600: rgba(black, 0.87),
+    700: white,
+    800: white,
+    900: white,
+    A100: rgba(black, 0.87),
+    A200: rgba(black, 0.87),
+    A400: rgba(black, 0.87),
+    A700: white,
+  )
+);
+
+$custom-text-palette: (
+  50: #e3e0dc,
+  100: #bab3aa,
+  200: #8c8174,
+  300: #5e503e,
+  400: #3b2e1e,
+  500: #1B1404,
+  // Colore principale
+  600: #181204,
+  700: #140f03,
+  800: #100c03,
+  900: #0a0802,
+  A100: #f3d6c1,
+  A200: #e3a47e,
+  A400: #d3713b,
+  A700: #c05e22,
+  contrast: (50: rgba(0, 0, 0, 0.87),
+    100: rgba(0, 0, 0, 0.87),
+    200: rgba(255, 255, 255, 1),
+    300: rgba(255, 255, 255, 1),
+    400: rgba(255, 255, 255, 1),
+    500: rgba(255, 255, 255, 1),
+    600: rgba(255, 255, 255, 1),
+    700: rgba(255, 255, 255, 1),
+    800: rgba(255, 255, 255, 1),
+    900: rgba(255, 255, 255, 1),
+    A100: rgba(0, 0, 0, 0.87),
+    A200: rgba(255, 255, 255, 1),
+    A400: rgba(255, 255, 255, 1),
+    A700: rgba(255, 255, 255, 1),
+  )
+);
+
+
+$myapp-theme-primary: mat.m2-define-palette($custom-primary-palette, A400, A100, A700);
+$myapp-theme-secondary: mat.m2-define-palette($custom-secondary-palette);
+$myapp-theme-text: mat.m2-define-palette($custom-text-palette);
+$myapp-theme-accent: mat.m2-define-palette($custom-accent-palette);
+$myapp-theme-warn: mat.m2-define-palette(mat.$m2-red-palette);
+
+$myapp-theme: mat.m2-define-light-theme((color: (primary: $myapp-theme-primary,
+        secondary: $myapp-theme-secondary,
+        text: $myapp-theme-text,
+        accent: $myapp-theme-accent,
+        warn: $myapp-theme-warn,
+      )));
+
+@include mat.all-component-themes($myapp-theme);
+@font-face {
+  font-family: futura;
+  src: url(assets/font/futura_sv/Futura\ Book.ttf) format("trutype");
+}
+@font-face {
+  font-family: bebas;
+  src: url(assets/font/bebas_neue/BebasNeue-Regular.ttf) format("truetype");
+}
+
+html,
+body {
+  height: 100vh;
+  color: $text-color;
+  overflow-y: hidden;
+  }
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+::selection {
+  background: $background-color; /* Colore di sfondo dell'evidenziazione */
+  color: $text-color;     /* Colore del testo evidenziato */
+}
+
+.success-snackbar {
+  background-color: green;
+  color: white;
+}
+
+.custom-snackbar {
+  background-color: blue;
+  color: yellow;
+}

@@ -1,0 +1,9 @@
+@use 'sass:color';
+@import '../../assets/styles/variables';
+
+.divider {
+  margin: 20px 0;
+  bottom: 0;
+  height: 1px;
+  color: darken($color: $accent-color, $amount: 1%);
+}

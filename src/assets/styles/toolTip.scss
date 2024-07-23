@@ -1,0 +1,13 @@
+/* Personalizzazione del tooltip */
+::ng-deep .mat-tooltip {
+    background-color: $text-color; /* Colore di sfondo */
+    color: $background-color; /* Colore del testo */
+    font-size: 14px; /* Dimensione del testo */
+    border-radius: 4px; /* Bordi arrotondati */
+    padding: 8px 12px; /* Spaziatura interna */
+  }
+  
+  /* Personalizzazione della freccia del tooltip */
+  ::ng-deep .mat-tooltip.mat-tooltip:before {
+    border-color: #fff transparent; /* Colore della freccia */
+  }

@@ -1,0 +1,29 @@
+<div class="navigation">
+  <p>Hive Mind</p>
+  <div class="button-menu">
+    <button id="new-post-button" mat-icon-button matTooltip="Create new post" matTooltipClass="mat-tooltip" (click)="openIdeaEditor()">
+      <div class="navBar-button">
+        <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="add"></mat-icon>
+        <label for="mat-icon">new idea</label>
+      </div>
+    </button>
+
+    <button class="navBar-button" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example thumbs up SVG icon"
+      matTooltip="Open profile menu" matTooltipClass="mat-tooltip">
+      <div class="navBar-button">
+        <mat-icon>person</mat-icon>
+        <label for="mat-icon">{{currentUser}}</label>
+      </div>
+    </button>
+  </div>
+  <mat-menu #menu="matMenu" backdropClass="menu">
+    <button mat-menu-item routerLink="/" (click)="performLogout()">
+      <mat-icon>logout</mat-icon>
+      <span>Log out</span>
+    </button>
+  </mat-menu>
+  
+</div>
+<div class="progress-container">
+  <mat-progress-bar [value]="bufferValue" [color]="color" [mode]="mode"></mat-progress-bar>
+</div>
