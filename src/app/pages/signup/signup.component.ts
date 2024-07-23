@@ -2,7 +2,7 @@ import { Component, inject, signal } from '@angular/core';
 import { FormControl, FormGroup, FormGroupDirective, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { UserService } from '../_services/user/user.service';
+import { UserService } from '../../_services/user/user.service';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
@@ -20,7 +20,6 @@ import { ErrorStateMatcher } from '@angular/material/core';
 })
 
 export class SignupComponent {
-  // Il resto del codice del componente rimane invariato
   constructor(private _snackBar: MatSnackBar) { }
 
   hidePassword = signal(false);

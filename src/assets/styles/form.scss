@@ -5,7 +5,7 @@
   display: flex;
   flex-direction: column;
 
-  .input input{
+  .input input {
     height: 20px;
   }
 }
@@ -37,5 +37,17 @@ a {
 
   &:hover::after {
     transform: scaleX(1);
+  }
+}
+
+
+@media screen and (max-width: 540px) {
+  .form-content {
+    width: 100%;
+
+  }
+
+  .input {
+    font-size: .8rem;
   }
 }

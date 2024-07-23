@@ -1,14 +1,14 @@
 import { Component, inject, signal, ChangeDetectionStrategy } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { AuthService } from '../_services/auth/auth.service';
-import { UserService } from '../_services/user/user.service';
+import { AuthService } from '../../_services/auth/auth.service';
+import { UserService } from '../../_services/user/user.service';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
-import { SnackBarService } from '../_services/snackBar/snack-bar.service';
+import { SnackBarService } from '../../_services/snackBar/snack-bar.service';
 
 @Component({
   selector: 'app-login',
@@ -35,7 +35,7 @@ export class LoginComponent {
   authService = inject(AuthService);
   snackBarService = inject(SnackBarService);
 
-  submitted = false; // l'utente ha gia provato a fare un accesso?
+  submitted = false; 
   loginForm = new FormGroup({
     username: new FormControl('', [Validators.required]),
     password: new FormControl('', [

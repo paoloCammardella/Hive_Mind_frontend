@@ -53,8 +53,4 @@ errorHandler = inject(ErrorHandlerService);
       catchError( this.errorHandler.handleError)
     );
   }
-
-
-  //TODO: vedi come fare per gli errori
-
 }

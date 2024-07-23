@@ -1,8 +1,8 @@
-@use '../../assets/styles/buttons.scss';
-@use '../../assets/styles/divider.scss';
-@use '../../assets/styles/form.scss';
-@import "../../assets/styles/variables";
-@import "../../assets/styles/snackBar.scss";
+@use '../../../assets/styles/buttons.scss';
+@use '../../../assets/styles/divider.scss';
+@use '../../../assets/styles/form.scss';
+@import "../../../assets/styles/variables";
+@import "../../../assets/styles/snackBar.scss";
 
 .nav-info {
   display: flex;
@@ -56,4 +56,10 @@ img{
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
+}
+
+@media screen and (max-width: 540px){
+  .login-container {
+    width: 90%;
+  }
 }

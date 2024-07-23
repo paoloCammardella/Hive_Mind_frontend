@@ -26,7 +26,7 @@ import { IdeaService } from '../_services/idea/idea.service';
 export class CommentComponent {
 
   ideaService = inject(IdeaService);
-  comments: CommentRequest[] = [{ text: 'ciao', idea_id: 'dawdawdaw', username: 'paolino' }];
+  comments: CommentRequest[] = [];
 
   readonly panelOpenState = signal(false);
   commentForm = new FormGroup({

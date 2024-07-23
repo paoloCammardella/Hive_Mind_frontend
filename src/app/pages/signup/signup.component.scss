@@ -1,8 +1,11 @@
-@use '../../assets/styles/buttons.scss';
-@use '../../assets/styles/form.scss';
-@use '../../assets/styles/divider.scss';
+@use '../../../assets/styles/buttons.scss';
+@use '../../../assets/styles/divider.scss';
+@use '../../../assets/styles/form.scss';
+@import "../../../assets/styles/variables";
+@import "../../../assets/styles/snackBar.scss";
 
-@import '../../assets/styles/variables';
+
+@import '../../../assets/styles/variables';
 
 * {
   justify-content: center;
@@ -36,4 +39,10 @@ h1 {
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
+}
+
+@media screen and (max-width: 540px){
+  #signup-content {
+    width: 90%;
+  }
 }
