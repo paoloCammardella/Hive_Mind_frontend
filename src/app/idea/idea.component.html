@@ -27,7 +27,7 @@
           </div>
           <p>{{ parseDate(item.createdAt) }}</p>
         </div>
-        <app-comment id="comments"></app-comment>
+        <app-comment [idea_id]="item._id" id="comments"></app-comment>
       </mat-card-footer>
     </mat-card>
   </li>

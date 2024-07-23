@@ -48,9 +48,8 @@ export class IdeaComponent implements AfterViewInit{
   }
 
   ngAfterViewInit() {
-    // Ensure paginator starts from the first page
-    this.paginator.pageIndex = 0; // Ensure paginator is on the first page
-    this.paginator.firstPage();    // Set paginator to the first page
+    this.paginator.pageIndex = 0;
+    this.paginator.firstPage();
   }
 
   onPageChange($event: PageEvent) {

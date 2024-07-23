@@ -12,6 +12,6 @@ export const environment = {
     },
     idea:{
         idea: url + '/idea',
-        comment: url + '/comment'
+        comment: url + '/idea/comment'
     }
 };

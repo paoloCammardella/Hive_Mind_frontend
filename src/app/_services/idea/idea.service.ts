@@ -4,7 +4,7 @@ import { IdeaRequest } from './idea-request.type';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { environment } from '../../../environments/environment.development';
-import { Comment } from './comment-request.type';
+import { CommentRequest } from './comment-request.type';
 import { ContentResponse, Idea } from '../../_model/Idea';
 
 enum IdeasType { popular = 'popular', unpopular = 'unpopular', controversial = 'controversial' };
@@ -37,11 +37,18 @@ export class IdeaService {
     );
   }
 
-  commentIdea(commentRequest: Comment) {
-    console.log(`This is the comment: ${commentRequest}`);
+  commentIdea(commentRequest: CommentRequest) {
+    console.log(`This is the comment: ${JSON.stringify(commentRequest)}`);
     const url = environment.idea.comment;
     return this.http.post(url, commentRequest).pipe(catchError(this.handleError));
   }
+
+  getComments(idea_id: string): Observable<CommentRequest[]> {
+    const url = environment.idea.comment;
+    const params = new HttpParams().set('idea_id', idea_id);
+    return this.http.get<CommentRequest[]>(url, {params}).pipe(catchError(this.handleError));
+  }
+
 
   //TODO: vedi come fare per gli errori
   private handleError(error: HttpErrorResponse): Observable<never> {
