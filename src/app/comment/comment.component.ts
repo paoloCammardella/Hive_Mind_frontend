@@ -55,7 +55,11 @@ export class CommentComponent {
   getComments() {
     this.ideaService.getComments(this.idea_id).subscribe({
       next: (comments) => {
+        console.log('This is what I fetched ' + comments);
         this.comments = comments;
+      },
+      error: (err) =>{
+        console.error('Something wrong: ' + err);
       }
     })
     return this.comments
