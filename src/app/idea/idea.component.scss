@@ -50,6 +50,9 @@ ul {
         mat-card-header {
             margin-top: 0;
             color: $text-color;
+            word-break: break-all;
+            overflow-wrap: break-word;
+            white-space: normal;
 
             mat-card-title {
                 color: $text-color;
@@ -65,7 +68,9 @@ ul {
 
         mat-card-content {
             margin: 1rem 0;
-            line-height: .5;
+            word-break: break-all;
+            overflow-wrap: break-word;
+            white-space: normal;
         }
 
 
@@ -96,9 +101,11 @@ ul {
 
                 }
             }
-            #comments{
+
+            #comments {
                 width: 100%;
             }
+
             p {
                 margin: 0;
                 font-size: 0.9em;
@@ -127,8 +134,47 @@ ul {
 
 mat-expansion-panel {
     background-color: $background-color;
-    box-shadow: none; // rimuove l'ombra di fondo
-    border: none; // rimuove il bordo
-    margin: 0; // rimuove il margine per allineare meglio
-    padding: 0; // rimuove il padding per allineare meglio
+    box-shadow: none;
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+
+@media screen and (max-width: 540px) {
+    mat-card-content {
+        height: 100%;
+        word-break: break-all;
+        overflow-wrap: break-word;
+        white-space: normal;
+    }
+
+    ul {
+        width: 100%;
+        overflow-x: hidden;
+        li {
+            max-width: 100%;
+            width: 100%;
+        }
+    }
+
+    #comments {
+        max-width: 100%;
+        width: 100%;
+        font-size: 4svw;
+    }
+
+    mat-card-header {
+
+        mat-card-title {
+            
+            color: $text-color;
+            font-size: 1.2rem;
+            font-weight: 400;
+        }
+
+        mat-card-subtitle {
+            font-style: italic;
+            color: #666;
+        }
+    }
 }

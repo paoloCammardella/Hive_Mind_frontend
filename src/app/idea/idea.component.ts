@@ -13,6 +13,7 @@ import { MatPaginator, MatPaginatorIntl, MatPaginatorModule, PageEvent } from '@
 import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { CommentComponent } from "../comment/comment.component";
 import { PaginatorIntlService } from '../_services/paginator/paginator-intl.service';
+import { SnackBarService } from '../_services/snackBar/snack-bar.service';
 
 @Component({
   selector: 'app-idea',
@@ -27,14 +28,15 @@ import { PaginatorIntlService } from '../_services/paginator/paginator-intl.serv
     MatFormField,
     MatLabel,
     CommentComponent],
-  providers: [DatePipe, {provide: MatPaginatorIntl, useClass: PaginatorIntlService}],
+  providers: [DatePipe, { provide: MatPaginatorIntl, useClass: PaginatorIntlService }],
   templateUrl: './idea.component.html',
   styleUrl: './idea.component.scss'
 })
-export class IdeaComponent implements AfterViewInit{
+export class IdeaComponent implements AfterViewInit {
 
   userService = inject(UserService);
   ideaService = inject(IdeaService);
+  snackBarService = inject(SnackBarService);
 
   @Output() pageNumber = new EventEmitter<number>();
   @Input() cardItems!: Idea[];
@@ -42,6 +44,8 @@ export class IdeaComponent implements AfterViewInit{
   @Input() pageIndex!: number;
   @ViewChild('paginator') paginator!: MatPaginator;
   currPage: number = 0;
+  userUpvoted: boolean = false;
+  userDownvoted: boolean = false;
 
   constructor(private sanitizer: DomSanitizer, private datePipe: DatePipe) {
 
@@ -64,42 +68,67 @@ export class IdeaComponent implements AfterViewInit{
 
   voteIdea(chip: string, idea: Idea) {
     let ideaRequest: LikeIdea = {
-      user_id: idea.user,
+      user_id: localStorage.getItem('user') as string,
       idea_id: idea._id,
       downVote: false,
       upVote: false,
     }
 
-    let userUpvoted: Boolean = false;
 
     if (chip === 'Upvote') {
-      ideaRequest.upVote = true;
-      ideaRequest.downVote = false;
+      if (idea.userUpvoted) {
+        ideaRequest.upVote = false;
+        ideaRequest.downVote = false;
+      } else {
+        ideaRequest.upVote = true;
+      }
       this.userService.likeIdea(ideaRequest).subscribe({
         next: () => {
-          userUpvoted = true;
-          idea.upvote++;
-          idea.userUpvoted = true;
-          idea.userDownvoted = false;
+          if (idea.userUpvoted) {
+            idea.upvote--;
+          } else if (idea.userDownvoted) {
+            idea.upvote++;
+            idea.downvote--;
+          } else {
+            idea.upvote++;
+          }
+          console.log('User upvoted;');
         },
         error: (err) => {
-          console.error('user voted his own idea');
+          if (ideaRequest.user_id === localStorage.getItem('user')) {
+            this.snackBarService.showSnackBar("You can't vote your own ideas");
+          } else {
+            console.error(err);
+          }
         }
       });
     } else if (chip === 'Downvote') {
-      ideaRequest.upVote = false;
-      ideaRequest.downVote = true;
+      if (idea.userDownvoted) {
+        ideaRequest.upVote = false;
+        ideaRequest.downVote = false;
+      } else {
+        ideaRequest.downVote = true;
+      }
       this.userService.likeIdea(ideaRequest).subscribe({
         next: () => {
-          idea.downvote++;
-          if (userUpvoted) {
+          if (idea.userDownvoted) {
+            idea.userDownvoted = false;
+            idea.downvote--;
+          } else if (idea.userUpvoted) {
             idea.upvote--;
+            idea.downvote++;
+          } else {
+            idea.userDownvoted = true;
+            idea.downvote++;
           }
-          idea.userUpvoted = false;
-          idea.userDownvoted = true;
+          console.log('User downvoted;')
         },
         error: (err) => {
-          console.error('user voted his own idea');
+          if (ideaRequest.user_id === localStorage.getItem('user')) {
+            this.snackBarService.showSnackBar("You can't vote your own ideas");
+          } else {
+            console.error(err);
+          }
         }
       });
     }

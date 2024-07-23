@@ -1,4 +1,4 @@
-<mat-expansion-panel id="panel" (opened)="getComments()" (closed)="clearCommentSection()">
+<mat-expansion-panel id="panel" (opened)="loadMoreComments()" (closed)="clearCommentSection()">
   <mat-expansion-panel-header>
     <mat-panel-title> Write your thoughts </mat-panel-title>
   </mat-expansion-panel-header>
@@ -30,6 +30,8 @@
         <p>{{ item.text }}</p>
       </div>
     </li>
+  <button id="load-more-btn" (click)="loadMoreComments()">Load more...</button>
+
   </ul>
   <ng-template #loading id="loading">
     <div id="loading-alert">

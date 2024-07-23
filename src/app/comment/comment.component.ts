@@ -33,6 +33,7 @@ export class CommentComponent {
     commentText: new FormControl('', Validators.minLength(2))
   })
   @Input() idea_id: string = '';
+  commentRange: number = 0;
 
 
   publishComment() {
@@ -52,8 +53,13 @@ export class CommentComponent {
     }
   }
 
+  loadMoreComments(){
+    this.commentRange += 3;
+    this.getComments();
+  }
+
   getComments() {
-    this.ideaService.getComments(this.idea_id).subscribe({
+    this.ideaService.getComments(this.idea_id, this.commentRange).subscribe({
       next: (comments) => {
         console.log('This is what I fetched ' + comments);
         this.comments = comments;
@@ -66,6 +72,7 @@ export class CommentComponent {
   }
 
   clearCommentSection() {
+    this.commentRange = 0;
     this.comments = [];
   }
 

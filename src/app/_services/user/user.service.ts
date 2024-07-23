@@ -4,12 +4,13 @@ import { AuthRequest } from './auth-request.type';
 import { User } from './user.type';
 import { environment } from '../../../environments/environment.development';
 import { LikeIdea } from '../../_model/Idea';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  getUserVotes(username: string) {
+  getUserVotes(username: string): Observable<LikeIdea[]> {
     const url = environment.user.votes;
     const params = new HttpParams().set('username', username);
     return this.http.get<LikeIdea[]>(url, {params});

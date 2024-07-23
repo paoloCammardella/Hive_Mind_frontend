@@ -66,10 +66,10 @@ export class HomeComponent implements OnInit {
 
     observable.subscribe({
       next: (ideas) => {
-        this.fetchUserVotes()
         this.ideas = ideas.content;
+        this.fetchUserVotes()
         this.totalElements = ideas.totalElements;
-        console.log('fetched Ideas ' + ideas.content);
+        console.log('fetched Ideas ' + this.ideas);
       },
       error: (err) => {
         this.ideas = [];
@@ -87,7 +87,7 @@ export class HomeComponent implements OnInit {
     }
 
     this.userService.getUserVotes(userId).subscribe({
-      next: (votes: LikeIdea[]) => {
+      next: (votes) => {
         console.log('User votes fetched:', votes);
         this.votedIdeas = votes;
         this.updateIdeasWithVotes();

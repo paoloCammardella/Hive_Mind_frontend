@@ -43,9 +43,9 @@ export class IdeaService {
     return this.http.post(url, commentRequest).pipe(catchError(this.handleError));
   }
 
-  getComments(idea_id: string): Observable<CommentRequest[]> {
+  getComments(idea_id: string, commentRange: number): Observable<CommentRequest[]> {
     const url = environment.idea.comment;
-    const params = new HttpParams().set('idea_id', idea_id);
+    const params = new HttpParams().set('idea_id', idea_id).set('commentRange', commentRange);
     return this.http.get<CommentRequest[]>(url, {params}).pipe(catchError(this.handleError));
   }
 
