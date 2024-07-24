@@ -1,19 +1,19 @@
 import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output, ViewChild, inject, signal, viewChild } from '@angular/core';
-import { Idea } from '../_model/Idea';
+import { Idea } from '../../_model/Idea';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatCardModule } from '@angular/material/card';
 import { CommonModule, DatePipe } from '@angular/common';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
-import { LikeIdea } from '../_model/Idea';
-import { UserService } from '../_services/user/user.service';
-import { IdeaService } from '../_services/idea/idea.service';
+import { LikeIdea } from '../../_model/Idea';
+import { UserService } from '../../_services/user/user.service';
+import { IdeaService } from '../../_services/idea/idea.service';
 import { MatPaginator, MatPaginatorIntl, MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { CommentComponent } from "../comment/comment.component";
-import { PaginatorIntlService } from '../_services/paginator/paginator-intl.service';
-import { SnackBarService } from '../_services/snackBar/snack-bar.service';
+import { PaginatorIntlService } from '../../_services/paginator/paginator-intl.service';
+import { SnackBarService } from '../../_services/snackBar/snack-bar.service';
 
 @Component({
   selector: 'app-idea',

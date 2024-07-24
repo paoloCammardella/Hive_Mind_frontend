@@ -8,10 +8,10 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatCardModule } from '@angular/material/card';
-import { SnackBarService } from '../_services/snackBar/snack-bar.service';
+import { SnackBarService } from '../../_services/snackBar/snack-bar.service';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { IdeaEditorDialogComponent } from '../idea-editor-dialog/idea-editor-dialog.component';
-import { AuthService } from '../_services/auth/auth.service';
+import { AuthService } from '../../_services/auth/auth.service';
 
 
 @Component({

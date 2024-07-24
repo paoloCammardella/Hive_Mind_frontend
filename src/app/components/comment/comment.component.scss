@@ -1,5 +1,5 @@
-@use '../../assets/styles/form.scss';
-@import '../../assets/styles/variables';
+@use '../../../assets/styles/form.scss';
+@import '../../../assets/styles/variables';
 
 #loading-alert {
     text-align: center;
@@ -15,14 +15,15 @@
     }
 
     #loading-text {
-        font-size: 1em;
+        font-size: 1rem;
         color: $text-color;
     }
 }
 
 #panel {
     background-color: $background-color;
-    box-shadow: none;
+        font-size: 1rem;
+        box-shadow: none;
 
     ul {
         list-style: none;
@@ -88,7 +89,6 @@
 
     #comments {
         width: 100%;
-        font-size: 4svw;
         display: flex;
         flex-direction: column;
         align-items: start;

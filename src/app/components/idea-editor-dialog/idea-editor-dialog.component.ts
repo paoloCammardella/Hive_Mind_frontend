@@ -7,9 +7,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { Editor, NgxEditorModule, Toolbar, Validators } from 'ngx-editor';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
-import { IdeaService } from '../_services/idea/idea.service';
-import { AuthService } from '../_services/auth/auth.service';
-import { SnackBarService } from '../_services/snackBar/snack-bar.service';
+import { IdeaService } from '../../_services/idea/idea.service';
+import { AuthService } from '../../_services/auth/auth.service';
+import { SnackBarService } from '../../_services/snackBar/snack-bar.service';
 import { CommonModule } from '@angular/common';
 
 @Component({

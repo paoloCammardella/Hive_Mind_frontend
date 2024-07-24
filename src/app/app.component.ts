@@ -2,8 +2,8 @@ import { Component, inject } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
 import { EditorModule } from 'primeng/editor';
 import { SignupComponent } from './pages/signup/signup.component';
-import { FooterComponent } from './footer/footer.component';
-import { NavbarComponent } from './navbar/navbar.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 import { AuthService } from './_services/auth/auth.service';
 
 

@@ -1,12 +1,12 @@
 import { Component, inject, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
-import { NavbarComponent } from '../../navbar/navbar.component';
-import { FooterComponent } from '../../footer/footer.component';
+import { NavbarComponent } from '../../components/navbar/navbar.component';
+import { FooterComponent } from '../../components/footer/footer.component';
 import { RouterOutlet } from '@angular/router';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
 import { Idea } from '../../_model/Idea';
-import { IdeaComponent } from '../../idea/idea.component';
+import { IdeaComponent } from '../../components/idea/idea.component';
 import { IdeaService } from '../../_services/idea/idea.service';
 import { UserService } from '../../_services/user/user.service';
 import { SnackBarService } from '../../_services/snackBar/snack-bar.service';

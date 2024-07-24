@@ -5,8 +5,8 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
-import { CommentRequest } from '../_services/idea/comment-request.type';
-import { IdeaService } from '../_services/idea/idea.service';
+import { CommentRequest } from '../../_services/idea/comment-request.type';
+import { IdeaService } from '../../_services/idea/idea.service';
 
 
 @Component({
