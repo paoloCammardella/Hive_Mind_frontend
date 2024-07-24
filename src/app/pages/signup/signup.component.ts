@@ -1,7 +1,6 @@
 import { Component, inject, signal } from '@angular/core';
 import { FormControl, FormGroup, FormGroupDirective, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
 import { UserService } from '../../_services/user/user.service';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
@@ -35,7 +34,6 @@ export class SignupComponent {
     event.stopPropagation();
   }
 
-  toastr = inject(ToastrService);
   router = inject(Router);
   userService = inject(UserService);
   submitted = false;

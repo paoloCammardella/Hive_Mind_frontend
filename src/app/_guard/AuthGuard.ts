@@ -13,8 +13,7 @@ export const AuthGuardService: CanActivateFn = (
     const router = inject(Router);
     if(!authService.verifyToken(token)){
       localStorage.clear();
-      return router.createUrlTree(['/login']);
+      return router.navigateByUrl('/login');
     }
-   
     return  true;
   };
