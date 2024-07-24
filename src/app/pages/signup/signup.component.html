@@ -3,27 +3,27 @@
     <h1>Create a new account</h1>
     <form class="form-content" [formGroup]="signupForm" (submit)="handleSignup()">
       <mat-form-field appearance="outline" class="input">
-        <mat-label>firstname</mat-label>
+        <mat-label>Firstname</mat-label>
         <input matInput placeholder="Mario" type="text" formControlName="firstName" required />
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="input">
-        <mat-label>lastname</mat-label>
+        <mat-label>Lastname</mat-label>
         <input matInput placeholder="Rossi" formControlName="lastName" required />
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="input">
-        <mat-label>username</mat-label>
+        <mat-label>Username</mat-label>
         <input matInput placeholder="marossi" type="text" formControlName="username" required />
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="input">
-        <mat-label>e-mail</mat-label>
+        <mat-label>E-mail</mat-label>
         <input matInput placeholder="mario@rossi.it" type="text" formControlName="email" required />
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="input">
-        <mat-label>password</mat-label>
+        <mat-label>Password</mat-label>
         <input matInput [type]="hidePassword() ? 'text' : 'password'" formControlName="password" required />
         <button mat-icon-button matSuffix type="button" (click)="togglePasswordVisibility($event)"
           [attr.aria-label]="hidePassword() ? 'Hide password' : 'Show password'" [attr.aria-pressed]="hidePassword()">
